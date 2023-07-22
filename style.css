@@ -145,3 +145,11 @@ body {
 .right-pane.show-details .hidden-links {
   display: flex;
 }
+
+@media (max-width: 767px) {
+  /* Adjust the width and height of the image to make it span the full width of the right pane */
+  .right-pane img {
+    width: 100%;
+    height: auto;
+  }
+}
