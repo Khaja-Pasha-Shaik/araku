@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araku Trip</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="top-bar">
+        <marquee behavior="scroll" direction="left"> * The Trip to Araku Starts from November 22, we have to leave on 21st night to Khammam. *   * Trip will end on November 26. *    * We will be reaching home on 27th Novmeber i.e., Monday *</marquee>
+    </div>
+	
+    <div class="container">
+        <div class="left-pane">
+            <h2>Options</h2>
+            <ul>
+                <li>
+                    <button class="btn-download" onclick="showTicketLinks()">Download Tickets</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showHotelLinks()">Download Hotel Bookings</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showItineraryLinks()">Download Itinerary</button>
+                </li>
+                <li>
+                    <a href="https://forms.gle/4rcCDt1icCKj3VYG9" target="_blank" class="btn-download">Q&A</a>
+                </li>
+                <li>
+                    <a href="https://chat.whatsapp.com/KKcGAZ1y5QZCTC4IeTma9X" target="_blank" class="btn-download">Contact Here</a>
+                </li>
+                <li>
+                    <a href="https://khaja-pasha-shaik.github.io/calculator-app/" target="_blank" class="btn-download">Budget Calculator</a>
+                </li>
+				<li>
+                    <a href="https://drive.google.com/drive/u/1/folders/1eb7B3K7HSZR0BQLHd5Xp-d09Emj-lSZs?q=parent:1eb7B3K7HSZR0BQLHd5Xp-d09Emj-lSZs" target="_blank" class="btn-download">Upload Photos Here</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-pane">
+            <img src="mountains.jpg" alt="Placeholder Image">
+        </div>
+		<div id="ticketLinks" class="hidden-links">
+            <!-- Hyperlinks will be displayed here dynamically -->
+        </div>
+		<div id="hotelLinks" class="hidden-links">
+            <!-- Hyperlinks will be displayed here dynamically -->
+        </div>
+		<div id="itineraryLinks" class="hidden-links">
+            <!-- Hyperlinks will be displayed here dynamically -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
