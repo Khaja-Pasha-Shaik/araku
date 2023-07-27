@@ -456,7 +456,7 @@ function getJsonData(){
 }
 
 
-var expenses = [];
+var expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 
 function showExpenses() {
   clearRightPane();
@@ -489,7 +489,7 @@ function submitExpense(event) {
 
   // Add the expense object to the expenses array
   expenses.push(expense);
-
+  localStorage.setItem('expenses', JSON.stringify(expenses));
   document.getElementById("expenseName").value = "";
   document.getElementById("expenseAmount").value = "";
   document.getElementById("expenseDescription").value = "";
