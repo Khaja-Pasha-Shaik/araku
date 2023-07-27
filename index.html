@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Araku Trip</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +23,19 @@
                     <button class="btn-download" onclick="showHotelLinks()">Download Hotel Bookings</button>
                 </li>
                 <li>
+                    <button class="btn-download" onclick="showDayWisePlan()">Day Wise Plan</button>
+                </li>
+                <li>
                     <button class="btn-download" onclick="showItineraryLinks()">Download Itinerary</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpenses()">Add Expense</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpensesTable()">View Expenses</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpenseStatistics()">Expense Statistics</button>
                 </li>
                 <li>
                     <a href="https://forms.gle/4rcCDt1icCKj3VYG9" target="_blank" class="btn-download">Q&A</a>
@@ -39,17 +52,57 @@
             </ul>
         </div>
         <div class="right-pane">
-            <img src="mountains.jpg" alt="Placeholder Image">
+            <select id="dayDropdown" onchange="updateTable()">
+                <!-- Dropdown options will be populated dynamically using JavaScript -->
+            </select>
+            <!-- Container to display the table dynamically -->
+            <div id="tableContainer"></div>
+            <div id="ticketLinks" class="hidden-links">
+                <!-- Hyperlinks will be displayed here dynamically -->
+            </div>
+            <div id="hotelLinks" class="hidden-links">
+                <!-- Hyperlinks will be displayed here dynamically -->
+            </div>
+            <div id="itineraryLinks" class="hidden-links">
+                <!-- Hyperlinks will be displayed here dynamically -->
+            </div>
+
+            <div id="expensesContainer" class="hidden-links">
+                <h2>Expenses</h2>
+                <div id="expensesList"></div>
+            </div>
+
+            <div id="expenseStatisticsContainer" class="hidden-links">
+                <h2>Expense Statistics</h2>
+                <canvas id="expenseChart"></canvas>
+            </div>
+
+            <div id="addExpenseFormContainer" class="hidden-links">
+                <h2>Add Expense</h2>
+                <form onsubmit="submitExpense(event)">
+                    <label for="expenseName">Name:</label>
+                    <select id="expenseName">
+                        <option value="Mahaboob">Mahaboob</option>
+                        <option value="Arifa Begum">Arifa Begum</option>
+                        <option value="Hussain">Hussain</option>
+                        <option value="Ayesha">Ayesha</option>
+                        <option value="Sadiq">Sadiq</option>
+                        <option value="Pasha">Pasha</option>
+                    </select>
+
+                    <label for="expenseAmount">Amount:</label>
+                    <input type="text" id="expenseAmount" placeholder="Enter the amount">
+
+                    <label for="expenseDescription">Description:</label>
+                    <input type="text" id="expenseDescription" placeholder="Enter the description">
+
+                    <button type="submit">Submit</button>
+                </form>
+                
+            </div>
+            <p id="result"></p>
         </div>
-		<div id="ticketLinks" class="hidden-links">
-            <!-- Hyperlinks will be displayed here dynamically -->
-        </div>
-		<div id="hotelLinks" class="hidden-links">
-            <!-- Hyperlinks will be displayed here dynamically -->
-        </div>
-		<div id="itineraryLinks" class="hidden-links">
-            <!-- Hyperlinks will be displayed here dynamically -->
-        </div>
+		
     </div>
 
     <script src="script.js"></script>
