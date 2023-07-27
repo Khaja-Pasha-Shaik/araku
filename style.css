@@ -1,10 +1,11 @@
+/* Global Styles */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", Arial, sans-serif;
-  font-size: 14px;
 }
 
+/* Top Bar */
 .top-bar {
   background-color: #333;
   color: #fff;
@@ -22,39 +23,23 @@ body {
   animation: marquee 20s linear infinite;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
+/* Container */
 .container {
   display: flex;
-  height: 100vh;
 }
 
+/* Left Pane */
 .left-pane {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 20%;
+  background-color: white;
   padding: 20px;
-  width: 300px; /* Adjust the width to your preferred size */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow-y: auto;
-  padding-right: 15px;
 }
-
 
 .left-pane h2 {
-  font-size: 25px;
+  margin-top: 20%;
   margin-bottom: 20px;
-  text-align: center;
-  margin-top: 40px;
+  font-size: 24px;
+  color: #333;
 }
 
 .left-pane ul {
@@ -68,7 +53,7 @@ body {
 }
 
 .left-pane li {
-  margin-bottom: 25px;
+  margin-bottom: 6%;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -94,65 +79,270 @@ body {
   background-color: #45a049;
 }
 
+/* Right Pane */
 .right-pane {
+  width: 70%;
   padding: 20px;
-  display: flex;
-  flex: 1; 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Center content vertically */
-  text-align: center;
-  position: relative;
+  margin-top: 5%;
+  box-sizing: border-box;
 }
 
-.right-pane img {
-  position: relative;
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-top: 87px;
+.right-pane select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.right-pane.hide-image img {
-  opacity: 0;
-  pointer-events: none;
+.right-pane table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
 }
 
-.details {
-  display: none;
-  margin-top: 10px;
+.right-pane th,
+.right-pane td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
 }
 
-.details h2 {
+.right-pane th {
+  background-color: #f2f2f2;
+}
+
+tbody td,
+thead th {
+  border: 1px solid #ccc;
+}
+
+/* Add left and right padding for table cells to create space */
+tbody td:not(:last-child),
+thead th:not(:last-child) {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+
+
+/* Add the following styles for the right pane */
+
+/* Show details class to apply styles to the right pane when showing links */
+.right-pane .show-details {
+  margin-left: 0%;
+  margin-top: 20%;
+  width: 100%; 
+  margin-right: 100%;
+}
+
+#itineraryLinks {
+  text-align: center; /* Center the links in the right pane */
+  margin-top: 5%;
+}
+
+#itineraryLinks h2 {
   font-size: 24px;
-  margin-bottom: 5px;
+  color: #007BFF;
 }
 
-.details a {
-  font-size: 20px;
-}
-
-.hidden-links {
-  /* ... Existing styles ... */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center content vertically */
-}
-
-/* Show the details and hide the links initially */
-.right-pane.show-details .details {
+#itineraryLinks a {
   display: block;
+  padding: 8px 16px;
+  background-color: #f2f2f2;
+  color: #007BFF;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.right-pane.show-details .hidden-links {
-  display: flex;
+#itineraryLinks a:hover {
+  background-color: #007BFF;
+  color: #fff;
 }
 
-@media (max-width: 767px) {
-  /* Adjust the width and height of the image to make it span the full width of the right pane */
-  .right-pane img {
-    width: 100%;
-    height: auto;
-  }
+#itineraryLinks br {
+  /* Adjust spacing between links */
+  line-height: 5px;
 }
+
+#dayDropdown{
+  display: none;
+}
+
+
+#hotelLinks {
+  text-align: center; /* Center the links in the right pane */
+  margin-top: 5%;
+}
+
+#hotelLinks h2 {
+  font-size: 24px;
+  color: #007BFF;
+  margin-bottom: 20px;
+}
+
+#hotelLinks a {
+  display: block;
+  padding: 8px 16px;
+  background-color: #f2f2f2;
+  color: #007BFF;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#hotelLinks a:hover {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+#hotelLinks br {
+  /* Adjust spacing between links */
+  line-height: 5px;
+}
+
+
+#ticketLinks {
+  text-align: center; /* Center the links in the right pane */
+  margin-top: 5%;
+}
+
+#ticketLinks h2 {
+  font-size: 24px;
+  color: #007BFF;
+  margin-bottom: 20px;
+}
+
+#ticketLinks a {
+  display: block;
+  padding: 8px 16px;
+  background-color: #f2f2f2;
+  color: #007BFF;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#ticketLinks a:hover {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+#ticketLinks br {
+  /* Adjust spacing between links */
+  line-height: 5px;
+}
+
+#addExpenseFormContainer {
+  display: none;
+}
+
+#result {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+
+/* Style for the Add Expense Form */
+
+#addExpenseFormContainer {
+  display: none; /* Hide the form by default */
+  margin-top: 20px;
+}
+
+#addExpenseFormContainer h2 {
+  font-size: 24px;
+  color: #007BFF;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+#addExpenseFormContainer label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#addExpenseFormContainer select,
+#addExpenseFormContainer input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#addExpenseFormContainer button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#addExpenseFormContainer button:hover {
+  background-color: #0056b3;
+}
+
+/* Optional: Add some additional spacing between form elements */
+#addExpenseFormContainer form {
+  margin-bottom: 20px;
+}
+
+
+
+/*---------------------------------------------*/
+
+/* Style for the Expenses Table */
+
+#expensesContainer {
+  display: none; /* Hide the expenses container by default */
+  margin-top: 20px;
+}
+
+#expensesContainer h2 {
+  font-size: 24px;
+  color: #007BFF;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+#expensesContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+#expensesContainer th,
+#expensesContainer td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+#expensesContainer th {
+  background-color: #f2f2f2;
+}
+
+/* Add the following styles for the chart container */
+#expenseStatisticsContainer {
+  display: none;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  margin-top: 0%;
+}
+
+/* Adjust the chart canvas size to fit the container */
+#expenseChart {
+  width: 100%;
+  height: 40%;
+}
+
+/* Show details class to apply styles to the right pane when showing links or chart */
+/* .right-pane.show-details {
+  overflow-y: auto;
+} */
