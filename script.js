@@ -26,7 +26,7 @@ function showTicketLinks() {
   var ticketLinks = document.getElementById("ticketLinks");
   var links = [
     { name: "Khammam to Vishakapatanam", url: "https://example.com/kmm-to-vskp" },
-    { name: "Vishakapatanam to Araku", url: "https://example.com/vskp-to-arku" },
+    { name: "Vishakapatanam to Araku", url: "https://drive.google.com/file/d/13kvu-KZZeJ3X_8CHXT8nBahA6g7pXDU2/view?usp=drive_link" },
     { name: "Vishakapatanam to Khammam", url: "https://example.com/vskp-to-kmm" },
   ];
   
