@@ -35,6 +35,7 @@ function showTicketLinks() {
   ticketLinks.appendChild(heading);
 
   // Create hyperlinks dynamically and append to the container
+  //uffff...
   links.forEach((link) => {
     var anchor = document.createElement("a");
     anchor.href = link.url;
