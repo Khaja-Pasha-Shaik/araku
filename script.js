@@ -57,7 +57,7 @@ function showHotelLinks() {
   
   var links = [
     { name: "Vishakapatanam Hotel Booking Details", url: "https://example.com/kmm-to-vskp" },
-    { name: "Araku Hotel Booking Details", url: "https://example.com/vskp-to-arku" },
+    { name: "Araku Hotel Booking Details", url: "https://drive.google.com/file/d/14WkZFjO6k7-7MYOXd1YTyCbFympLAyNw/view?usp=drivesdk" },
   ];
   
   var heading = document.createElement("h2");
