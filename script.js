@@ -27,7 +27,7 @@ function showTicketLinks() {
   var links = [
     { name: "Khammam to Vishakapatanam", url: "https://drive.google.com/file/d/14CGjMiziN9BHYXGLfiyoMceCMzrhkwfF/view?usp=drivesdk" },
     { name: "Vishakapatanam to Araku", url: "https://drive.google.com/file/d/13kvu-KZZeJ3X_8CHXT8nBahA6g7pXDU2/view?usp=drive_link" },
-    { name: "Vishakapatanam to Khammam", url: "https://example.com/vskp-to-kmm" },
+    { name: "Vishakapatanam to Khammam", url: "https://drive.google.com/file/d/15BeQvwK75BDKFGdUnlAMVCsB4la6mWxs/view?usp=drivesdk" },
   ];
   
   var heading = document.createElement("h2");
@@ -56,7 +56,7 @@ function showHotelLinks() {
   var hotelLinks = document.getElementById("hotelLinks");
   
   var links = [
-    { name: "Vishakapatanam Hotel Booking Details", url: "https://example.com/kmm-to-vskp" },
+    { name: "Vishakapatanam Hotel Booking Details", url: "https://drive.google.com/file/d/15D7QWtcQGwK3VuooDh2vdKOumZbHMMQW/view?usp=drivesdk" },
     { name: "Araku Hotel Booking Details", url: "https://drive.google.com/file/d/14WkZFjO6k7-7MYOXd1YTyCbFympLAyNw/view?usp=drivesdk" },
   ];
   
