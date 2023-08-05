@@ -140,6 +140,7 @@ function clearRightPane() {
   expensesContainer.classList.remove("show-details");
 
   document.getElementById('expenseStatisticsContainer').style.display = 'none';
+  document.getElementById('videoPlayer').style.display='none';
   
 }
 
