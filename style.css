@@ -342,7 +342,9 @@ thead th:not(:last-child) {
   height: 40%;
 }
 
-/* Show details class to apply styles to the right pane when showing links or chart */
-/* .right-pane.show-details {
-  overflow-y: auto;
-} */
+#videoPlayer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-bottom: 3%;
+}
