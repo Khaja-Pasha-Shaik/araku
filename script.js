@@ -109,6 +109,7 @@ function showItineraryLinks() {
 
 function clearRightPane() {
   document.getElementById('dayDropdown').style.display = 'none';
+  document.getElementById('chat-container').style.display = 'none';
   var ticketLinks = document.getElementById("ticketLinks");
   ticketLinks.innerHTML = ""; // Clear the container to hide the details
   ticketLinks.classList.remove("show-details");
@@ -590,4 +591,91 @@ function showExpenseStatistics() {
       },
     },
   });
+}
+
+const sendBotMessageBtn = document.getElementById('sendBotMessageBtn');
+sendBotMessageBtn.addEventListener('click', handleBotMessage);
+
+function handleBotMessage() {
+  const userInput = document.getElementById('botMessage').value;
+  appendUserMessage(userInput);
+  generateBotResponse(userInput);
+}
+
+
+function generateBotResponse(userInput) {
+  const inputText = userInput.toLowerCase();
+  let response = "I'm sorry, I didn't understand that.";
+    if (inputText === 'hi' || inputText === 'hello') {
+        response = "Hi there! What would you like to know about the trip?";
+        appendBotMessage(response);
+        showBotOptions();
+    } else if (inputText === 'when does the trip start?' || (userInput.includes('start') && userInput.includes('date'))) {
+        response = "The trip starts on<br> November 22nd.";
+        appendBotMessage(response);
+    } else if (inputText === 'when does the trip end?' || (userInput.includes('end') && userInput.includes('date'))) {
+        response = "The trip ends on November 26th.<br> You will reach home on 27th i.e., Monday";
+        appendBotMessage(response);
+    }else if (inputText === 'tell me about araku' || (userInput.includes('about') && userInput.includes('araku'))) {
+      response = "Araku, located in Andhra Pradesh, is a captivating hill station known for its breathtaking landscapes, lush coffee plantations, and pleasant climate. Visitors are drawn to its scenic beauty, with mist-covered hills, cascading waterfalls, and diverse flora and fauna, making it an ideal destination for nature lovers and those seeking a tranquil getaway. <br>Araku's tribal culture, aromatic coffee, and picturesque valleys contribute to its unique charm, offering a memorable escape from the hustle and bustle of city life.";
+      appendBotMessage(response);
+    } else if (inputText === 'what are vistadome coaches?' || (userInput.includes('glass') && userInput.includes('train'))) {
+      response = "The Vistadome coaches on the Kirandul Express offer a unique travel experience with their glass-domed ceilings, providing panoramic views of the picturesque landscapes along the route. Passengers can enjoy the scenic beauty of hills, valleys, and waterfalls while comfortably seated. <br><br>The coaches also come equipped with modern amenities, enhancing the journey's comfort and enjoyment.";
+      appendBotMessage(response);
+    } else if (inputText === 'how many tunnels we have in vskp-arku route?' || userInput.includes('tunnels')) {
+    response = "The journey between Visakhapatnam and Araku features a total of 58 tunnels, adding an element of intrigue and excitement to the scenic train ride.";
+    appendBotMessage(response);
+    } else {
+      appendBotMessage(response);
+    }
+}
+
+
+function appendUserMessage(message) {
+  const chatDiv = document.getElementById('chat');
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('user');
+  messageDiv.textContent = message;
+  chatDiv.appendChild(messageDiv);
+  chatDiv.scrollTop = chatDiv.scrollHeight;
+}
+
+
+
+function activateBot() {
+  clearRightPane();
+  document.getElementById('chat-container').style.display = 'block';
+  const chatBox = document.getElementById('chatBox');
+  chatBox.classList.remove('hidden-links');
+  appendBotMessage("Hi there! What would you like to know about the trip?");
+  showBotOptions();
+}
+
+function showBotOptions() {
+  const options = [
+      "When does the trip start?",
+      "When does the trip end?",
+      "Where do I get the tickets from?",
+      "I want to add an expense. How?",
+      "What are the train details?",
+      "Tell me about Araku",
+      "What are vistadome coaches?",
+      "How many tunnels we have in VSKP-ARKU route",
+  ];
+
+  const optionsHTML = options.map(option => `<button class="option" onclick="fillInput('${option}')">${option}</button>`).join('  ');
+  appendBotMessage(optionsHTML);
+}
+
+function fillInput(text) {
+  document.getElementById('botMessage').value = text;
+}
+
+function appendBotMessage(message) {
+  const chatDiv = document.getElementById('chat');
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('bot');
+  messageDiv.innerHTML = message;
+  chatDiv.appendChild(messageDiv);
+  chatDiv.scrollTop = chatDiv.scrollHeight;
 }
