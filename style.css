@@ -348,3 +348,109 @@ thead th:not(:last-child) {
   object-fit: cover;
   margin-bottom: 3%;
 }
+
+.chat-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto;
+  height: 100%; /* Occupy full height */
+  display: flex;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.chat {
+  flex: 1; /* Occupy remaining space */
+  max-height: 70vh;
+  overflow-y: auto; /* Enable scrolling */
+}
+
+@media screen and (max-width: 768px) {
+  .chat {
+    max-height: 80vh; /* Adjust the value for smaller screens */
+  }
+}
+
+.nameAndStatus {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.options {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+margin-top: 10px;
+font-size: 10px;
+}
+
+.option {
+background-color: #EDEDED;
+border: none;
+border-radius: 10px;
+padding: 10px;
+margin: 5px;
+cursor: pointer;
+font-size: 10px;
+}
+
+/* Add this to your existing CSS stylesheet or style tag */
+.bot {
+  color: green;
+  align-self: flex-start;
+  background-color: #f2f2f2;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+
+.user {
+  color: red;
+  text-align: right;
+  align-self: flex-end;
+  background-color: #ffc2c2;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+
+.option:hover {
+background-color: #ccc;
+}
+
+#chatBox .input {
+  display: flex;
+  align-items: center;
+}
+
+#chatBox #botMessage {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#chatBox #sendBotMessageBtn {
+  background-color: #00cc66;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#chatBox #sendBotMessageBtn::after {
+  content: "\2192"; /* Unicode arrow right character */
+  margin-left: 5px;
+}
+
