@@ -28,6 +28,9 @@
                 <li>
                     <button class="btn-download" onclick="showItineraryLinks()">Download Itinerary</button>
                 </li>
+		<li>
+                    <button class="btn-download" onclick="activateBot()">Chat with bot - Chatu</button>
+                </li>
                 <li>
                     <button class="btn-download" onclick="showExpenses()">Add Expense</button>
                 </li>
@@ -66,6 +69,7 @@
             <div id="itineraryLinks" class="hidden-links">
                 <!-- Hyperlinks will be displayed here dynamically -->
             </div>
+		
 
             <div id="expensesContainer" class="hidden-links">
                 <h2>Expenses</h2>
@@ -81,6 +85,21 @@
                 <source src="route.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+	    <div id="chatBox" class="hidden-links">
+                <div class="chat-container" id="chat-container">
+                    <div class="nameAndStatus" id="nameAndStatus">
+                        <div class="name">Chatu - The Bot</div>
+                        <div class="name">Online</div>
+                    </div>
+                    <div id="chat" class="chat">
+                    </div>
+                    <div class="input">
+                        <input type="text" id="botMessage" placeholder="Type your message">
+                        <button id="sendBotMessageBtn"></button>
+                    </div>
+                </div>
+            </div>
 
             <div id="addExpenseFormContainer" class="hidden-links">
                 <h2>Add Expense</h2>
