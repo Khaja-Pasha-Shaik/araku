@@ -98,7 +98,10 @@ body {
 .right-pane table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #ccc;
+  border: none; /* Removing the default border */
+  border-radius: 10px; /* Adding rounded corners */
+  overflow: hidden; /* Hide overflow to prevent corner clipping */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
 }
 
 .right-pane th,
@@ -106,6 +109,7 @@ body {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ccc;
+  font-size: 10px;
 }
 
 .right-pane th {
@@ -124,6 +128,24 @@ thead th:not(:last-child) {
   padding-left: 10px;
 }
 
+/* Stylish colors */
+.right-pane th {
+  background-color: #3498db; /* Header background color */
+  color: white; /* Header text color */
+}
+
+.right-pane td {
+  background-color: #ecf0f1; /* Cell background color */
+}
+
+.right-pane tbody tr:nth-child(even) td {
+  background-color: #f7f9f9; /* Alternate row background color */
+}
+
+.right-pane th,
+.right-pane td {
+  border-bottom: 1px solid #ddd; /* Lighter border color */
+}
 
 
 /* Add the following styles for the right pane */
@@ -166,9 +188,32 @@ thead th:not(:last-child) {
   line-height: 5px;
 }
 
-#dayDropdown{
+#dayDropdown {
   display: none;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+#dayDropdown option {
+  padding: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+#dayDropdown:hover,
+#dayDropdown:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+#dayDropdown option:hover {
+  background-color: #f2f2f2;
+}
+
 
 
 #hotelLinks {
@@ -323,7 +368,7 @@ thead th:not(:last-child) {
 }
 
 #expensesContainer th {
-  background-color: #f2f2f2;
+  background-color: #3498db;
 }
 
 /* Add the following styles for the chart container */
