@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script>
+        window.addEventListener('load', () => {
+          if (window.orientation !== 90 && window.orientation !== -90) {
+            alert('Please turn on auto-rotate for the best experience.');
+          }
+        });
+      </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Araku Trip</title>
