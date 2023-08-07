@@ -213,252 +213,287 @@ function updateTable(filteredData) {
 function getJsonData(){
   const  jsonData = [
     {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "8:00-9:00(Optional)",
-        "visitingPlace": "Simhachalam Temple",
-        "description": "Closures(if any): All days open | Cost: Entry free | Location: 16Km away from railway station | (Have breakfast later on ~1hr)",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "10:00-11:30",
-        "visitingPlace": "Kailasagiri",
-        "description": "Hours: Opens up by 10 | Cost varies with ropeway: ~100/person | Location: On the way to RK beach | Must try: Ropeway, Toy Train Ride",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "12:00-13:00",
-        "visitingPlace": "Tenneti Park/Beach",
-        "description": "Relax, Spend some time | Cost: Free",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "13:30-15:00",
-        "visitingPlace": "RK beach",
-        "description": "Cost: Free | Have Lunch | Try water Activities",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "15:30-16:00",
-        "visitingPlace": "Thotlakonda Buddhist Monk site",
-        "description": "Cost: Free",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "16:40-17:30",
-        "visitingPlace": "Beemili Beach",
-        "description": "Cost: Free",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "18:00-19:00",
-        "visitingPlace": "INS Kursura/Submarine",
-        "description": "Cost: 40/Person",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-1 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "19:20-20:30",
-        "visitingPlace": "TU 142 Aircraft Museum",
-        "description": "Cost: 70/Person | Last Location of the day | Rest to roar tomorrow",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "6:00-7:30",
-        "visitingPlace": "Random Beach road",
-        "description": "Cost: Entry free | Experience the beach | Anum/Anums Family exempted",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "9:00-9:15 ",
-        "visitingPlace": "War memorial",
-        "description": "Cost: Entry Free ",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "9:20-10:00",
-        "visitingPlace": "VUDA Park",
-        "description": "Cost: Entry 20/Person | Return to room, have breakfast",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "11:00-13:00",
-        "visitingPlace": "Zoo Park",
-        "description": "Cost: 50/Person",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "13:30-14:15",
-        "visitingPlace": "Matsyadarshini",
-        "description": "Cost: 30/Person",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "16:00-16:30",
-        "visitingPlace": "Dolphins nose light house",
-        "description": "Cost: 20/Person",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "17:00-17:30 ",
-        "visitingPlace": "Yarada Beach",
-        "description": "Cost: Entry Free",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-2 [Vizag City]",
-        "baseLocation": "Vizag City",
-        "time": "18:00-20:00/21:00 ",
-        "visitingPlace": "RK beach",
-        "description": "Famous for street food at this time | Relax, Last location of the day | Or can cover if anything missed on day-1, Sleep early to getup at 5:00AM next morning",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-3 [Araku Valley]",
-        "baseLocation": "Araku",
-        "time": "Wish",
-        "visitingPlace": "Chaparai Waterfalls",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-3 [Araku Valley]",
-        "baseLocation": "Araku",
-        "time": "Wish",
-        "visitingPlace": "Rana Jellada Waterfalls",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-3 [Araku Valley]",
-        "baseLocation": "Araku",
-        "time": "Wish",
-        "visitingPlace": "Padmapuram Gardens ",
-        "description": "Take toy train ride  ",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-3 [Araku Valley]",
-        "baseLocation": "Araku",
-        "time": "Wish",
-        "visitingPlace": "Tribal Museum",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-3 [Araku Valley]",
-        "baseLocation": "Araku",
-        "time": "Wish",
-        "visitingPlace": "Coffee Museum",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-4 [Lambasingi]",
-        "baseLocation": "Araku",
-        "time": "Wish",
-        "visitingPlace": "Lambasingi ",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-4 [Lambasingi]",
-        "baseLocation": "Araku",
-        "time": "Wish",
-        "visitingPlace": "Lambasingi/ In & Around Araku",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-5 [Moving away from Araku]",
-        "baseLocation": "Araku - Away",
-        "time": "Wish",
-        "visitingPlace": "Shooting spot",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-5 [Moving away from Araku]",
-        "baseLocation": "Araku - Away",
-        "time": "Wish",
-        "visitingPlace": "Sunkarimetta Baptist Church",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-5 [Moving away from Araku]",
-        "baseLocation": "Araku - Away",
-        "time": "Wish",
-        "visitingPlace": "Ananthagiri Coffee plantations",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-5 [Moving away from Araku]",
-        "baseLocation": "Araku - Away",
-        "time": "Wish",
-        "visitingPlace": "Galikonda Viewpoint",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-5 [Moving away from Araku]",
-        "baseLocation": "Araku - Away",
-        "time": "Wish",
-        "visitingPlace": "Ananthagiri Waterfalls",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-5 [Moving away from Araku]",
-        "baseLocation": "Araku - Away",
-        "time": "Wish",
-        "visitingPlace": "Katika waterfalls",
-        "description": "NA",
-        "status": "Yet to Visit"
-    },
-    {
-        "dayNumber": "Day-5 [Moving away from Araku]",
-        "baseLocation": "Araku - Away",
-        "time": "Wish",
-        "visitingPlace": "Borra caves",
-        "description": "NA",
-        "status": "Yet to Visit"
-    }
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "8:00-9:00(Optional)",
+      "visitingPlace": "Simhachalam Temple",
+      "description": "Closures(if any): All days open <br> Cost: Entry free <br> Location: 16Km away from railway station <br> (Have breakfast later on ~1hr)",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "10:00-11:30",
+      "visitingPlace": "Kailasagiri",
+      "description": "Hours: Opens up by 10 <br> Cost varies with ropeway: ~100/person <br> Location: On the way to RK beach <br> Must try: Ropeway, Toy Train Ride",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "12:00-13:00",
+      "visitingPlace": "Tenneti Park/Beach",
+      "description": "Relax, Spend some time <br> Cost: Free",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "13:30-15:00",
+      "visitingPlace": "RK beach",
+      "description": "Cost: Free <br> Have Lunch <br> Try water Activities",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "15:30-16:00",
+      "visitingPlace": "Thotlakonda Buddhist Monk site",
+      "description": "Cost: Free",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "16:40-17:30",
+      "visitingPlace": "Beemili Beach",
+      "description": "Cost: Free",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "18:00-19:00",
+      "visitingPlace": "INS Kursura/Submarine",
+      "description": "Cost: 40/Person",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-1 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "19:20-20:30",
+      "visitingPlace": "TU 142 Aircraft Museum",
+      "description": "Cost: 70/Person <br> Last Location of the day <br> Rest to roar tomorrow",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "6:00-7:30",
+      "visitingPlace": "Random Beach road",
+      "description": "Cost: Entry free <br> Experience the beach <br> Anum/Anums Family exempted",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "9:00-9:15 ",
+      "visitingPlace": "War memorial",
+      "description": "Cost: Entry Free ",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "9:20-10:00",
+      "visitingPlace": "VUDA Park",
+      "description": "Cost: Entry 20/Person <br> Return to room, have breakfast",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "11:00-13:00",
+      "visitingPlace": "Zoo Park",
+      "description": "Cost: 50/Person",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "13:30-14:15",
+      "visitingPlace": "Matsyadarshini",
+      "description": "Cost: 30/Person",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "16:00-16:30",
+      "visitingPlace": "Dolphins nose light house",
+      "description": "Cost: 20/Person",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "17:00-17:30 ",
+      "visitingPlace": "Yarada Beach",
+      "description": "Cost: Entry Free",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-2 [Vizag City]",
+      "baseLocation": "Vizag City",
+      "time": "18:00-20:00/21:00 ",
+      "visitingPlace": "RK beach",
+      "description": "Famous for street food at this time <br> Relax, Last location of the day <br> Or can cover if anything missed on day-1, Sleep early to getup at 5:00AM next morning",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-3 [Araku Valley]",
+      "baseLocation": "Araku",
+      "time": "Wish",
+      "visitingPlace": "Chaparai Waterfalls",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-3 [Araku Valley]",
+      "baseLocation": "Araku",
+      "time": "Wish",
+      "visitingPlace": "Rana Jellada Waterfalls",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-3 [Araku Valley]",
+      "baseLocation": "Araku",
+      "time": "Wish",
+      "visitingPlace": "Padmapuram Gardens ",
+      "description": "Take toy train ride  ",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-3 [Araku Valley]",
+      "baseLocation": "Araku",
+      "time": "Wish",
+      "visitingPlace": "Tribal Museum",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-3 [Araku Valley]",
+      "baseLocation": "Araku",
+      "time": "Wish",
+      "visitingPlace": "Coffee Museum",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-4 [Lambasingi]",
+      "baseLocation": "Araku",
+      "time": "Wish",
+      "visitingPlace": "Lambasingi ",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-4 [Lambasingi]",
+      "baseLocation": "Araku",
+      "time": "Wish",
+      "visitingPlace": "Lambasingi/ In & Around Araku",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-5 [Moving away from Araku]",
+      "baseLocation": "Araku - Away",
+      "time": "Wish",
+      "visitingPlace": "Shooting spot",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-5 [Moving away from Araku]",
+      "baseLocation": "Araku - Away",
+      "time": "Wish",
+      "visitingPlace": "Sunkarimetta Baptist Church",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-5 [Moving away from Araku]",
+      "baseLocation": "Araku - Away",
+      "time": "Wish",
+      "visitingPlace": "Ananthagiri Coffee plantations",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-5 [Moving away from Araku]",
+      "baseLocation": "Araku - Away",
+      "time": "Wish",
+      "visitingPlace": "Galikonda Viewpoint",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-5 [Moving away from Araku]",
+      "baseLocation": "Araku - Away",
+      "time": "Wish",
+      "visitingPlace": "Ananthagiri Waterfalls",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-5 [Moving away from Araku]",
+      "baseLocation": "Araku - Away",
+      "time": "Wish",
+      "visitingPlace": "Katika waterfalls",
+      "description": "NA",
+      "status": "Yet to Visit"
+  },
+  {
+      "dayNumber": "Day-5 [Moving away from Araku]",
+      "baseLocation": "Araku - Away",
+      "time": "Wish",
+      "visitingPlace": "Borra caves",
+      "description": "NA",
+      "status": "Yet to Visit"
+  }
 
 ];
   return jsonData;
 }
 
 
+
 var expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+expenses = [
+  {
+    "name": "Pasha",
+    "amount": 4435,
+    "description": "Visakhapatnam to Araku Train tickets",
+    "timestamp": "27/7/2023 6:21:47 pm"
+  },
+  {
+    "name": "Pasha",
+    "amount": 3386,
+    "description": "Khammam to Visakhapatnam Train tickets",
+    "timestamp": "28/7/2023 5:44:02 pm"
+  },
+  {
+    "name": "Pasha",
+    "amount": 8064,
+    "description": "Araku Hotel Booking",
+    "timestamp": "29/7/2023 12:40:26 am"
+  },
+  {
+    "name": "Pasha",
+    "amount": 4675,
+    "description": "Visakhapatnam to Khammam Train tickets",
+    "timestamp": "31/7/2023 1:54:37 pm"
+  },
+  {
+    "name": "Pasha",
+    "amount": 6691,
+    "description": "Visakhapatnam Hotel Booking",
+    "timestamp": "31/7/2023 9:10:28 pm"
+  }
+
+];
+
 
 function showExpenses() {
   clearRightPane();
@@ -611,7 +646,7 @@ function generateBotResponse(userInput) {
         appendBotMessage(response);
         showBotOptions();
     } else if (inputText === 'when does the trip start?' || (userInput.includes('start') && userInput.includes('date'))) {
-        response = "The trip starts on<br> November 22nd.";
+        response = "The trip starts on November 22nd.<br>We will be leaving on 21st Nov night to Khammam";
         appendBotMessage(response);
     } else if (inputText === 'when does the trip end?' || (userInput.includes('end') && userInput.includes('date'))) {
         response = "The trip ends on November 26th.<br> You will reach home on 27th i.e., Monday";
@@ -622,13 +657,63 @@ function generateBotResponse(userInput) {
     } else if (inputText === 'what are vistadome coaches?' || (userInput.includes('glass') && userInput.includes('train'))) {
       response = "The Vistadome coaches on the Kirandul Express offer a unique travel experience with their glass-domed ceilings, providing panoramic views of the picturesque landscapes along the route. Passengers can enjoy the scenic beauty of hills, valleys, and waterfalls while comfortably seated. <br><br>The coaches also come equipped with modern amenities, enhancing the journey's comfort and enjoyment.";
       appendBotMessage(response);
-    } else if (inputText === 'how many tunnels we have in vskp-arku route?' || userInput.includes('tunnels')) {
+    } else if (inputText === 'how many tunnels we have in araku route?' || userInput.includes('tunnels')) {
     response = "The journey between Visakhapatnam and Araku features a total of 58 tunnels, adding an element of intrigue and excitement to the scenic train ride.";
     appendBotMessage(response);
-    } else {
+    } else if (inputText === 'i have a 1.5year old kid with me. what to carry?' || userInput.includes('anum') || userInput.includes('kid with me')) {
+      response = `
+      <table>
+          <tr>
+              <th>Things to Carry</th>
+          </tr>
+          <tr><td>Always carry food either biscuits/cerlac</td></tr>
+          <tr><td>Carry kettle to heatup water</td></tr>
+          <tr><td>Carry 2 pair of sweaters</td></tr>
+          <tr><td>Carry tissues, papercups, use and throw underpants</td></tr>
+          <tr><td>Separate Blanket</td></tr>
+      </table>`;
+      appendBotMessage(response);
+    }else if (inputText === 'how many pair of clothes should i carry?' || userInput.includes('clothes')) {
+      response = "It is recommended to carry only 4 pairs with 1 night wear and a sweater/thermal. <br>Always recommend people to carry daily a pair of underpants and a towel to make sure that you enjoy every water spot or beach";
+      appendBotMessage(response);
+    }else if (inputText === 'i want to add an expense. how?' || userInput.includes('add expense')) {
+      response = "You cannot add any expense. Give to your admin and he can help you with it";
+      appendBotMessage(response);
+    }else if (inputText === 'give me train number to track on whereismytrain app?' || userInput.includes('train app')) {
+      response = `
+      <table>
+          <tr>
+              <th>Boarding at</th>
+              <th>Train Number</th>
+              <th>Train Name</th>
+              <th>Departure Station</th>
+          </tr>
+          <tr>
+              <td>Khammam[KMT]</td>
+              <td>12740</td>
+              <td>GARIBRATH EXP</td>
+              <td>Visakhapatnam[VSKP]</td>
+          </tr>
+          <tr>
+              <td>Visakhapatnam[VSKP]</td>
+              <td>08551</td>
+              <td>KIRANDUL PGRSP</td>
+              <td>Arakku[ARKU]</td>
+          </tr>
+          <tr>
+              <td>Visakhapatnam[VSKP]</td>
+              <td>20805</td>
+              <td>AP EXPRESS</td>
+              <td>Khammam[KMT]</td>
+          </tr>
+      </table>`;
+      appendBotMessage(response);
+    }
+    else {
       appendBotMessage(response);
     }
 }
+
 
 
 function appendUserMessage(message) {
@@ -655,12 +740,13 @@ function showBotOptions() {
   const options = [
       "When does the trip start?",
       "When does the trip end?",
-      "Where do I get the tickets from?",
+      "How many pair of clothes should I carry?",
       "I want to add an expense. How?",
-      "What are the train details?",
+      "Give me train number to track on WhereIsMyTrain App?",
       "Tell me about Araku",
-      "What are vistadome coaches?",
-      "How many tunnels we have in VSKP-ARKU route",
+      "What are vistadome coaches/glass train?",
+      "How many tunnels we have in Araku route",
+      "I have a 1.5year old kid with me. What to carry?"
   ];
 
   const optionsHTML = options.map(option => `<button class="option" onclick="fillInput('${option}')">${option}</button>`).join('  ');
