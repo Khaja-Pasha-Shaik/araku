@@ -8,6 +8,8 @@
           }
         });
       </script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Araku Trip</title>
@@ -47,7 +49,7 @@
                 <li>
                     <button class="btn-download" onclick="activateBot()">Chat with bot - Chatu</button>
                 </li>
-		<li>
+                <li>
                     <a href="https://khaja-pasha-shaik.github.io/calculator-app/" target="_blank" class="btn-download">Budget Calculator</a>
                 </li>
                 <li>
@@ -84,6 +86,9 @@
 
             <div id="expenseStatisticsContainer" class="hidden-links">
                 <h2>Expense Statistics</h2>
+                <div class="graphLoading" id="graphLoading">
+                    <p>Hold on. Generating Realtime Statistics ..... </p>
+                </div>
                 <canvas id="expenseChart"></canvas>
             </div>
 
@@ -161,7 +166,6 @@
         </div>
 		
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
