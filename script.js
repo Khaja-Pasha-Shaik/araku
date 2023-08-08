@@ -520,6 +520,10 @@ function submitExpense(event) {
   var name = document.getElementById("expenseName").value;
   var amount = document.getElementById("expenseAmount").value;
   var description = document.getElementById("expenseDescription").value;
+  var clearingCheck = document.getElementById("addClearingCheckbox").checked;
+  var clearingFrom = document.getElementById("expenseFrom").value;
+  var clearingTo = document.getElementById("expenseClearingTo").value;
+
 
   if (name && amount && description && amount){
   // Convert amount to a number (you can add additional validation here if needed)
@@ -532,7 +536,10 @@ function submitExpense(event) {
     name: name,
     amount: amount,
     description: description,
-    timestamp: timestampIST
+    timestamp: timestampIST,
+    clearingCheck,
+    clearingFrom,
+    clearingTo
   };
 
   // Add the expense object to the expenses array
@@ -541,6 +548,8 @@ function submitExpense(event) {
   document.getElementById("expenseName").value = "";
   document.getElementById("expenseAmount").value = "";
   document.getElementById("expenseDescription").value = "";
+
+  // Get references to the checkbox and the two dropdowns
 
   // Optional: Display a success message
   document.getElementById('result').style.display = 'block';
@@ -555,6 +564,25 @@ function submitExpense(event) {
 }
   
 }
+
+const addClearingCheckbox = document.getElementById("addClearingCheckbox");
+const expenseFromDropdown = document.getElementById("expenseFrom");
+const expenseClearingToDropdown = document.getElementById("expenseClearingTo");
+
+// Add an event listener to the checkbox
+addClearingCheckbox.addEventListener("change", function () {
+    // Check if the checkbox is checked
+    if (addClearingCheckbox.checked) {
+        // Enable the two dropdowns
+        expenseFromDropdown.disabled = false;
+        expenseClearingToDropdown.disabled = false;
+    } else {
+        // Disable the two dropdowns
+        expenseFromDropdown.disabled = true;
+        expenseClearingToDropdown.disabled = true;
+    }
+});
+
 
 
 function showExpensesTable() {
@@ -597,12 +625,29 @@ function showExpenseStatistics() {
 
   // Group expenses by name and calculate total amount for each name
   var groupedExpenses = {};
+  var clearingCalculations = {}; // Object to store clearing calculations
   expenses.forEach((expense) => {
     if (groupedExpenses.hasOwnProperty(expense.name)) {
       groupedExpenses[expense.name] += expense.amount;
     } else {
       groupedExpenses[expense.name] = expense.amount;
     }
+
+    if (expense.clearingCheck) {
+      // Perform clearing calculations
+      if (!clearingCalculations[expense.clearingTo]) {
+        clearingCalculations[expense.clearingTo] = 0;
+      }
+      if (!clearingCalculations[expense.clearingFrom]) {
+        clearingCalculations[expense.clearingFrom] = 0;
+      }
+      clearingCalculations[expense.clearingTo] -= expense.amount;
+    }
+  });
+
+  // Apply clearing calculations to the groupedExpenses
+  Object.keys(clearingCalculations).forEach((name) => {
+    groupedExpenses[name] += clearingCalculations[name];
   });
 
   var names = Object.keys(groupedExpenses);
