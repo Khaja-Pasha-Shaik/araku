@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script>
+    <script>
         window.addEventListener('load', () => {
           if (window.orientation !== 90 && window.orientation !== -90) {
             alert('Please turn on auto-rotate for the best experience.');
@@ -35,9 +35,6 @@
                 <li>
                     <button class="btn-download" onclick="showItineraryLinks()">Download Itinerary</button>
                 </li>
-		<li>
-                    <button class="btn-download" onclick="activateBot()">Chat with bot - Chatu</button>
-                </li>
                 <li>
                     <button class="btn-download" onclick="showExpenses()">Add Expense</button>
                 </li>
@@ -48,15 +45,15 @@
                     <button class="btn-download" onclick="showExpenseStatistics()">Expense Statistics</button>
                 </li>
                 <li>
+                    <button class="btn-download" onclick="activateBot()">Chat with bot - Chatu</button>
+                </li>
+                <li>
                     <a href="https://forms.gle/4rcCDt1icCKj3VYG9" target="_blank" class="btn-download">Q&A</a>
                 </li>
                 <li>
                     <a href="https://chat.whatsapp.com/KKcGAZ1y5QZCTC4IeTma9X" target="_blank" class="btn-download">Contact Here</a>
                 </li>
-                <li>
-                    <a href="https://khaja-pasha-shaik.github.io/calculator-app/" target="_blank" class="btn-download">Budget Calculator</a>
-                </li>
-		<li>
+		        <li>
                     <a href="https://drive.google.com/drive/folders/15FRQD9bYARTW8RXzaRu1DuXdv3-7vmoV" target="_blank" class="btn-download">Upload Photos Here</a>
                 </li>
             </ul>
@@ -76,7 +73,6 @@
             <div id="itineraryLinks" class="hidden-links">
                 <!-- Hyperlinks will be displayed here dynamically -->
             </div>
-		
 
             <div id="expensesContainer" class="hidden-links">
                 <h2>Expenses</h2>
@@ -88,12 +84,13 @@
                 <canvas id="expenseChart"></canvas>
             </div>
 
-	    <video id="videoPlayer" controls autoplay>
+            <video id="videoPlayer" controls autoplay>
+                
                 <source src="route.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
-	    <div id="chatBox" class="hidden-links">
+            <div id="chatBox" class="hidden-links">
                 <div class="chat-container" id="chat-container">
                     <div class="nameAndStatus" id="nameAndStatus">
                         <div class="name">Chatu - The Bot</div>
@@ -126,6 +123,32 @@
 
                     <label for="expenseDescription">Description:</label>
                     <input type="text" id="expenseDescription" placeholder="Enter the description">
+
+                    <label>
+                        <input type="checkbox" id="addClearingCheckbox"> Add as part of Clearing 
+                    </label>
+            
+                    <!-- Dropdowns for "From" and "Clearing to" -->
+                    <label for="expenseFrom">From:</label>
+                    <select id="expenseFrom" disabled>
+                        <option value="Mahaboob">Mahaboob</option>
+                        <option value="Arifa Begum">Arifa Begum</option>
+                        <option value="Hussain">Hussain</option>
+                        <option value="Ayesha">Ayesha</option>
+                        <option value="Sadiq">Sadiq</option>
+                        <option value="Pasha">Pasha</option>
+                    </select>
+            
+                    <label for="expenseClearingTo">Clearing to:</label>
+                    <select id="expenseClearingTo" disabled>
+                        <option value="Mahaboob">Mahaboob</option>
+                        <option value="Arifa Begum">Arifa Begum</option>
+                        <option value="Hussain">Hussain</option>
+                        <option value="Ayesha">Ayesha</option>
+                        <option value="Sadiq">Sadiq</option>
+                        <option value="Pasha">Pasha</option>
+                    </select>
+            
 
                     <button type="submit">Submit</button>
                 </form>
