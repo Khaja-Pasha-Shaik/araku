@@ -490,8 +490,19 @@ expenses = [
     "amount": 6691,
     "description": "Visakhapatnam Hotel Booking",
     "timestamp": "31/7/2023 9:10:28 pm"
+  },
+  {
+    "name": "Ayesha",
+    "amount": 4541,
+    "description": "Clearing to Pasha",
+    "timestamp": "01/8/2023 9:35:28 pm"
+  },
+  {
+    "name": "Hussain",
+    "amount": 4541,
+    "description": "Clearing to Pasha",
+    "timestamp": "01/8/2023 9:35:28 pm"
   }
-
 ];
 
 
