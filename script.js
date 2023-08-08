@@ -457,53 +457,51 @@ function getJsonData(){
   return jsonData;
 }
 
-
-
-var expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-expenses = [
-  {
-    "name": "Pasha",
-    "amount": 2956,
-    "description": "Visakhapatnam to Araku Train tickets",
-    "timestamp": "27/7/2023 6:21:47 pm"
-  },
-  {
-    "name": "Pasha",
-    "amount": 2256,
-    "description": "Khammam to Visakhapatnam Train tickets",
-    "timestamp": "28/7/2023 5:44:02 pm"
-  },
-  {
-    "name": "Pasha",
-    "amount": 5376,
-    "description": "Araku Hotel Booking",
-    "timestamp": "29/7/2023 12:40:26 am"
-  },
-  {
-    "name": "Pasha",
-    "amount": 3116,
-    "description": "Visakhapatnam to Khammam Train tickets",
-    "timestamp": "31/7/2023 1:54:37 pm"
-  },
-  {
-    "name": "Pasha",
-    "amount": 4460,
-    "description": "Visakhapatnam Hotel Booking",
-    "timestamp": "31/7/2023 9:10:28 pm"
-  },
-  {
-    "name": "Ayesha",
-    "amount": 4541,
-    "description": "Clearing to Pasha",
-    "timestamp": "01/8/2023 9:35:28 pm"
-  },
-  {
-    "name": "Hussain",
-    "amount": 4541,
-    "description": "Clearing to Pasha",
-    "timestamp": "01/8/2023 9:35:28 pm"
-  }
-];
+// var expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+// expenses = [
+//   {
+//     "name": "Pasha",
+//     "amount": 4435,
+//     "description": "Visakhapatnam to Araku Train tickets",
+//     "timestamp": "27/7/2023 6:21:47 pm"
+//   },
+//   {
+//     "name": "Pasha",
+//     "amount": 3386,
+//     "description": "Khammam to Visakhapatnam Train tickets",
+//     "timestamp": "28/7/2023 5:44:02 pm"
+//   },
+//   {
+//     "name": "Pasha",
+//     "amount": 8064,
+//     "description": "Araku Hotel Booking",
+//     "timestamp": "29/7/2023 12:40:26 am"
+//   },
+//   {
+//     "name": "Pasha",
+//     "amount": 4675,
+//     "description": "Visakhapatnam to Khammam Train tickets",
+//     "timestamp": "31/7/2023 1:54:37 pm"
+//   },
+//   {
+//     "name": "Pasha",
+//     "amount": 6691,
+//     "description": "Visakhapatnam Hotel Booking",
+//     "timestamp": "31/7/2023 9:10:28 pm"
+//   },
+//   {
+//     "name": "Ayesha",
+//     "amount": 4541,
+//     "description": "Clearing to Pasha",
+//     "timestamp": "01/8/2023 9:35:28 pm"
+//   },
+//   {
+//     "name": "Hussain",
+//     "amount": 4541,
+//     "description": "Clearing to Pasha",
+//     "timestamp": "01/8/2023 9:35:28 pm"
+//   }
+// ];
 
 
 function showExpenses() {
@@ -511,6 +509,20 @@ function showExpenses() {
     var addExpenseFormContainer = document.getElementById("addExpenseFormContainer");
     document.getElementById('addExpenseFormContainer').style.display = 'block';
   addExpenseFormContainer.classList.add("show-details");
+}
+
+const firebaseConfig = {
+  apiKey: "API_KEY",
+  authDomain: "AUTH_DOMAIN",
+  projectId: "PROJECT_ID",
+  storageBucket: "STORAGE_BUCKET",
+  messagingSenderId: "MESSAGING_SENDER_ID",
+  appId: "APP_ID",
+  measurementId: "MEASUREMENT_ID"
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
 }
 
 function submitExpense(event) {
@@ -543,8 +555,13 @@ function submitExpense(event) {
   };
 
   // Add the expense object to the expenses array
-  expenses.push(expense);
-  localStorage.setItem('expenses', JSON.stringify(expenses));
+
+  // firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  
+  const newDataRef = database.ref('data').push();
+  newDataRef.set(expense);
+
   document.getElementById("expenseName").value = "";
   document.getElementById("expenseAmount").value = "";
   document.getElementById("expenseDescription").value = "";
@@ -556,7 +573,6 @@ function submitExpense(event) {
   document.getElementById("result").textContent = "Expense added successfully.";
 
   // Optional: Print the updated expenses array in the console
-  console.log(expenses);
   showExpenseStatistics();
 }else {
   document.getElementById('result').style.display = 'block';
@@ -588,29 +604,43 @@ addClearingCheckbox.addEventListener("change", function () {
 function showExpensesTable() {
   clearRightPane();
   document.getElementById('expensesContainer').style.display = 'block';
-  console.log('Expenses array in Show expenses table :: ', expenses);
   // Show the expenses table container
   var expensesContainer = document.getElementById("expensesContainer");
   expensesContainer.classList.add("show-details");
 
   // Get the expenses list and render it as a table
   var expensesList = document.getElementById("expensesList");
-  var tableHTML = '<table>';
-  tableHTML += '<thead><tr><th>Name</th><th>Amount</th><th>Description</th><th>Timestamp</th></tr></thead>';
-  tableHTML += '<tbody>';
+  expensesList.innerHTML = '<div class="loading" id="loading"><p>🚂🚃🚃🚃🚃🚃🚃</p></div>';
+  const dataRef = firebase.database().ref('data');
+  dataRef.once('value')
+    .then((snapshot) => {
+      const data = snapshot.val();
+      const jsonArray = Object.values(data);
+      console.log(jsonArray);
 
-  expenses.forEach((expense) => {
-    tableHTML += '<tr>';
-    tableHTML += `<td>${expense.name}</td>`;
-    tableHTML += `<td>${expense.amount}</td>`;
-    tableHTML += `<td>${expense.description}</td>`;
-    tableHTML += `<td>${expense.timestamp}</td>`;
-    tableHTML += '</tr>';
-  });
+      var tableHTML = '<table>';
+      tableHTML += '<thead><tr><th>Name</th><th>Amount</th><th>Description</th><th>Timestamp</th><th>Relative</th></tr></thead>';
+      tableHTML += '<tbody>';
 
-  tableHTML += '</tbody></table>';
+      jsonArray.forEach((expense) => {
+        tableHTML += '<tr>';
+        tableHTML += `<td>${expense.name}</td>`;
+        tableHTML += `<td>${expense.amount}</td>`;
+        tableHTML += `<td>${expense.description}</td>`;
+        tableHTML += `<td>${expense.timestamp}</td>`;
+        const clearingContent = expense.clearingCheck
+        ? `Cleared to ${expense.clearingTo}`
+        : 'NA';
+        tableHTML += `<td>${clearingContent}</td>`;
+        tableHTML += '</tr>';
+      });
 
-  expensesList.innerHTML = tableHTML;
+      tableHTML += '</tbody></table>';
+      expensesList.innerHTML = tableHTML;
+    })
+    .catch((error) => {
+      console.error('Error retrieving data:', error);
+    });
 }
 
 // Global variable to store the expense chart
@@ -622,66 +652,78 @@ function showExpenseStatistics() {
   var expensesContainer = document.getElementById("expenseStatisticsContainer");
   document.getElementById('expenseStatisticsContainer').style.display = 'block';
   expensesContainer.classList.add("show-details");
+  // Get the expenses from Firebase
+  var loadingDiv = document.getElementById('graphLoading');
+  loadingDiv.style.display = 'block';
+  const dataRef = firebase.database().ref('data');
+  dataRef.once('value')
+    .then((snapshot) => {
+      var expenses = Object.values(snapshot.val());
 
-  // Group expenses by name and calculate total amount for each name
-  var groupedExpenses = {};
-  var clearingCalculations = {}; // Object to store clearing calculations
-  expenses.forEach((expense) => {
-    if (groupedExpenses.hasOwnProperty(expense.name)) {
-      groupedExpenses[expense.name] += expense.amount;
-    } else {
-      groupedExpenses[expense.name] = expense.amount;
-    }
+      // Group expenses by name and calculate total amount for each name
+      var groupedExpenses = {};
+      var clearingCalculations = {}; // Object to store clearing calculations
+      expenses.forEach((expense) => {
+        if (groupedExpenses.hasOwnProperty(expense.name)) {
+          groupedExpenses[expense.name] += expense.amount;
+        } else {
+          groupedExpenses[expense.name] = expense.amount;
+        }
 
-    if (expense.clearingCheck) {
-      // Perform clearing calculations
-      if (!clearingCalculations[expense.clearingTo]) {
-        clearingCalculations[expense.clearingTo] = 0;
+        if (expense.clearingCheck) {
+          // Perform clearing calculations
+          if (!clearingCalculations[expense.clearingTo]) {
+            clearingCalculations[expense.clearingTo] = 0;
+          }
+          if (!clearingCalculations[expense.clearingFrom]) {
+            clearingCalculations[expense.clearingFrom] = 0;
+          }
+          clearingCalculations[expense.clearingTo] -= expense.amount;
+        }
+      });
+
+      // Apply clearing calculations to the groupedExpenses
+      Object.keys(clearingCalculations).forEach((name) => {
+        groupedExpenses[name] += clearingCalculations[name];
+      });
+
+      var names = Object.keys(groupedExpenses);
+      var amounts = Object.values(groupedExpenses);
+
+      // If an expense chart already exists, destroy it before creating a new one
+      loadingDiv.style.display = 'none';
+      if (expenseChart) {
+        expenseChart.destroy();
       }
-      if (!clearingCalculations[expense.clearingFrom]) {
-        clearingCalculations[expense.clearingFrom] = 0;
-      }
-      clearingCalculations[expense.clearingTo] -= expense.amount;
-    }
-  });
-
-  // Apply clearing calculations to the groupedExpenses
-  Object.keys(clearingCalculations).forEach((name) => {
-    groupedExpenses[name] += clearingCalculations[name];
-  });
-
-  var names = Object.keys(groupedExpenses);
-  var amounts = Object.values(groupedExpenses);
-
-  // If an expense chart already exists, destroy it before creating a new one
-  if (expenseChart) {
-    expenseChart.destroy();
-  }
-
-  // Create a chart using Chart.js
-  var ctx = document.getElementById("expenseChart").getContext("2d");
-  expenseChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: names,
-      datasets: [
-        {
-          label: "Total Expense",
-          data: amounts,
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 1,
+      loadingDiv.style.display = 'none';
+      // Create a chart using Chart.js
+      var ctx = document.getElementById("expenseChart").getContext("2d");
+      expenseChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: names,
+          datasets: [
+            {
+              label: "Total Expense",
+              data: amounts,
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
+            },
+          ],
         },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
         },
-      },
-    },
-  });
+      });
+    })
+    .catch((error) => {
+      console.error('Error retrieving data:', error);
+    });
 }
 
 const sendBotMessageBtn = document.getElementById('sendBotMessageBtn');
