@@ -148,6 +148,7 @@ thead th:not(:last-child) {
 }
 
 
+
 /* Add the following styles for the right pane */
 
 /* Show details class to apply styles to the right pane when showing links */
@@ -213,7 +214,6 @@ thead th:not(:last-child) {
 #dayDropdown option:hover {
   background-color: #f2f2f2;
 }
-
 
 
 #hotelLinks {
@@ -394,6 +394,7 @@ thead th:not(:last-child) {
   margin-bottom: 3%;
 }
 
+
 .chat-container {
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -499,3 +500,43 @@ background-color: #ccc;
   margin-left: 5px;
 }
 
+#loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#loading p {
+  font-size: 24px;
+  animation: trainMoveLeft 0.8s infinite; /* Animation for moving train to the left */
+}
+
+@keyframes trainMoveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px); /* Moving to the left */
+  }
+  50% {
+    transform: translateX(-20px); /* Moving to the left */
+  }
+  75% {
+    transform: translateX(-10px); /* Moving to the left */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+#graphLoading {
+  display: none;
+  text-align: center;
+  padding: 20px;
+}
+
+#graphLoading p {
+  font-size: 24px;
+  animation: trainMoveLeft 0.8s infinite;
+}
