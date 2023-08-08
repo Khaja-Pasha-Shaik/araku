@@ -463,31 +463,31 @@ var expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 expenses = [
   {
     "name": "Pasha",
-    "amount": 4435,
+    "amount": 2956,
     "description": "Visakhapatnam to Araku Train tickets",
     "timestamp": "27/7/2023 6:21:47 pm"
   },
   {
     "name": "Pasha",
-    "amount": 3386,
+    "amount": 2256,
     "description": "Khammam to Visakhapatnam Train tickets",
     "timestamp": "28/7/2023 5:44:02 pm"
   },
   {
     "name": "Pasha",
-    "amount": 8064,
+    "amount": 5376,
     "description": "Araku Hotel Booking",
     "timestamp": "29/7/2023 12:40:26 am"
   },
   {
     "name": "Pasha",
-    "amount": 4675,
+    "amount": 3116,
     "description": "Visakhapatnam to Khammam Train tickets",
     "timestamp": "31/7/2023 1:54:37 pm"
   },
   {
     "name": "Pasha",
-    "amount": 6691,
+    "amount": 4460,
     "description": "Visakhapatnam Hotel Booking",
     "timestamp": "31/7/2023 9:10:28 pm"
   },
