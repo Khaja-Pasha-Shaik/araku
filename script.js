@@ -512,13 +512,13 @@ function showExpenses() {
 }
 
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
+  apiKey: "AIzaSyC8srqzY28Js2qRxP1uBSsoPdKVrW9w22c",
+  authDomain: "science-fair-cc178.firebaseapp.com",
+  projectId: "science-fair-cc178",
+  storageBucket: "science-fair-cc178.appspot.com",
+  messagingSenderId: "1081210307296",
+  appId: "1:1081210307296:web:e5a737f40e2d4fdf3bc685",
+  measurementId: "G-G32V63YDKQ"
 };
 
 if (!firebase.apps.length) {
