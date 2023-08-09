@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.addEventListener('load', () => {
+          if (window.orientation !== 90 && window.orientation !== -90) {
+            alert('Please turn on auto-rotate for the best experience.');
+          }
+        });
+      </script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araku Trip</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="top-bar">
+        <marquee behavior="scroll" direction="left"> 🚂🚃🚃🚃🚃🚃🚃 * The Trip to Araku Starts from November 22, we have to leave on 21st night to Khammam. *   * Trip will end on November 26. *    * We will be reaching home on 27th Novmeber i.e., Monday * !!! Only Admin(Khaja Pasha) can update expense tabs,if you try to do, you can only see it. Please reach out to me if you have any expense to update.!!!</marquee>
+    </div>
+	
+    <div class="container">
+        <div class="left-pane">
+            <h2>Options</h2>
+            <ul>
+                <li>
+                    <button class="btn-download" onclick="showTicketLinks()">Download Tickets</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showHotelLinks()">Download Hotel Bookings</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showDayWisePlan()">Day Wise Plan</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showItineraryLinks()">Download Itinerary</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpenses()">Add Expense</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpensesTable()">View Expenses</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="showExpenseStatistics()">Expense Statistics</button>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="activateBot()">Chat with bot - Chatu</button>
+                </li>
+                <li>
+                    <a href="https://khaja-pasha-shaik.github.io/calculator-app/" target="_blank" class="btn-download">Budget Calculator</a>
+                </li>
+                <li>
+                    <a href="https://forms.gle/4rcCDt1icCKj3VYG9" target="_blank" class="btn-download">Q&A</a>
+                </li>
+                <li>
+                    <a href="https://chat.whatsapp.com/KKcGAZ1y5QZCTC4IeTma9X" target="_blank" class="btn-download">Contact Here</a>
+                </li>
+		        <li>
+                    <a href="https://drive.google.com/drive/folders/15FRQD9bYARTW8RXzaRu1DuXdv3-7vmoV" target="_blank" class="btn-download">Upload Photos Here</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-pane">
+            <select id="dayDropdown" onchange="updateTable()">
+                <!-- Dropdown options will be populated dynamically using JavaScript -->
+            </select>
+            <!-- Container to display the table dynamically -->
+            <div id="tableContainer"></div>
+            <div id="ticketLinks" class="hidden-links">
+                <!-- Hyperlinks will be displayed here dynamically -->
+            </div>
+            <div id="hotelLinks" class="hidden-links">
+                <!-- Hyperlinks will be displayed here dynamically -->
+            </div>
+            <div id="itineraryLinks" class="hidden-links">
+                <!-- Hyperlinks will be displayed here dynamically -->
+            </div>
+
+            <div id="expensesContainer" class="hidden-links">
+                <h2>Expenses</h2>
+                <div id="expensesList"></div>
+            </div>
+
+            <div id="expenseStatisticsContainer" class="hidden-links">
+                <h2>Expense Statistics</h2>
+                <div class="graphLoading" id="graphLoading">
+                    <p>Hold on. Generating Realtime Statistics ..... </p>
+                </div>
+                <canvas id="expenseChart"></canvas>
+            </div>
+
+            <video id="videoPlayer" controls autoplay>
+                
+                <source src="route.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div id="chatBox" class="hidden-links">
+                <div class="chat-container" id="chat-container">
+                    <div class="nameAndStatus" id="nameAndStatus">
+                        <div class="name">Chatu - The Bot</div>
+                        <div class="name">Online</div>
+                    </div>
+                    <div id="chat" class="chat">
+                    </div>
+                    <div class="input">
+                        <input type="text" id="botMessage" placeholder="Type your message">
+                        <button id="sendBotMessageBtn"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="addExpenseFormContainer" class="hidden-links">
+                <h2>Add Expense</h2>
+                <form onsubmit="submitExpense(event)">
+                    <label for="expenseName">Name:</label>
+                    <select id="expenseName">
+                        <option value="Mahaboob">Mahaboob</option>
+                        <option value="Arifa Begum">Arifa Begum</option>
+                        <option value="Hussain">Hussain</option>
+                        <option value="Ayesha">Ayesha</option>
+                        <option value="Sadiq">Sadiq</option>
+                        <option value="Pasha">Pasha</option>
+                    </select>
+
+                    <label for="expenseAmount">Amount:</label>
+                    <input type="text" id="expenseAmount" placeholder="Enter the amount">
+
+                    <label for="expenseDescription">Description:</label>
+                    <input type="text" id="expenseDescription" placeholder="Enter the description">
+
+                    <label>
+                        <input type="checkbox" id="addClearingCheckbox"> Add as part of Clearing 
+                    </label>
+            
+                    <!-- Dropdowns for "From" and "Clearing to" -->
+                    <label for="expenseFrom">From:</label>
+                    <select id="expenseFrom" disabled>
+                        <option value="Mahaboob">Mahaboob</option>
+                        <option value="Arifa Begum">Arifa Begum</option>
+                        <option value="Hussain">Hussain</option>
+                        <option value="Ayesha">Ayesha</option>
+                        <option value="Sadiq">Sadiq</option>
+                        <option value="Pasha">Pasha</option>
+                    </select>
+            
+                    <label for="expenseClearingTo">Clearing to:</label>
+                    <select id="expenseClearingTo" disabled>
+                        <option value="Mahaboob">Mahaboob</option>
+                        <option value="Arifa Begum">Arifa Begum</option>
+                        <option value="Hussain">Hussain</option>
+                        <option value="Ayesha">Ayesha</option>
+                        <option value="Sadiq">Sadiq</option>
+                        <option value="Pasha">Pasha</option>
+                    </select>
+            
+
+                    <button type="submit">Submit</button>
+                </form>
+                
+            </div>
+            <p id="result"></p>
+        </div>
+		
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
