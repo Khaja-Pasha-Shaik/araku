@@ -656,3 +656,24 @@ thead th:not(:last-child) {
 #submitButton:disabled:hover {
   background-color: grey; /* Keep the same grey color on hover */
 }
+
+
+.participantDropdownContainer {
+  display: none;
+  align-items: center;
+  margin-bottom: 10px;
+  background: linear-gradient(102.57deg, #e83e8c, #e53935);
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+}
+
+
+.pdfPreview{
+  display: none;
+}
+
+.participantDropdownContainer label {
+  margin-right: 10px; /* Add spacing between label and dropdown */
+}
+
