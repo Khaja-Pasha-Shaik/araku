@@ -914,8 +914,8 @@ The total amounts you contributed till now for various expenses during the trip 
         table: {
           widths: [100, '*', 60],
           body: [
-            ['Date', 'Description', 'Amount'],
-            ...filteredDataCr.map(item => [item.timestamp, item.description, item.amount]),
+            ['Date', 'Received From', 'Amount'],
+            ...filteredDataCr.map(item => [item.timestamp, item.clearingFrom, item.amount]),
           ],
         },
         style: 'tableStyle'
