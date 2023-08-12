@@ -107,6 +107,8 @@ function clearRightPane() {
   document.getElementById('dayDropdown').style.display = 'none';
   document.getElementById('chat-container').style.display = 'none';
   document.getElementById('json-button').style.display = 'none';
+  document.getElementById('participantDropdownContainer').style.display = 'none';
+  document.getElementById('pdfPreview').style.display = 'none';
   var ticketLinks = document.getElementById("ticketLinks");
   ticketLinks.innerHTML = "";
   ticketLinks.classList.remove("show-details");
@@ -862,3 +864,100 @@ function clearLocalStorage() {
   localStorage.clear();
   console.log('LocalStorage has been cleared.');
 }
+
+const participantDropdown = document.getElementById('participantDropdown');
+const pdfPreview = document.getElementById('pdfPreview');
+
+// Event listener
+participantDropdown.addEventListener('change', generateAndShowExpenseReport);
+
+async function generateAndShowExpenseReport() {
+  clearRightPane();
+  document.getElementById('participantDropdownContainer').style.display = 'flex';
+  document.getElementById('pdfPreview').style.display = 'block';
+  const selectedParticipant = participantDropdown.value;
+
+  // Fetch data from the API
+  const response = await fetch('https://khaja-pasha-shaik.github.io/expense.json');
+  const jsonData = await response.json();
+
+  // Filter data based on selected participant
+  const filteredData = jsonData.filter(item => item.name === selectedParticipant);
+  const totalDebit = filteredData.reduce((total, item) => total + item.amount, 0);
+  const filteredDataCr = jsonData.filter(item => ((item.clearingTo === selectedParticipant) && item.clearingCheck));
+  const totalCredit = filteredDataCr.reduce((total, item) => total + item.amount, 0);
+  const netSpent = totalDebit-totalCredit;
+
+  const pdfDefinition = {
+    content: [
+      { text: 'Expense Report: Vizag and Araku Trip\n\n', style: 'header' },
+      { text: `Dear ${selectedParticipant},\n
+      We hope this message finds you well. And wishing that you are enjoying the trip to Vizag and Araku, we would like to provide you with an overview of the expenses incurred during the journey. Your participation contributed to a memorable experience, and we appreciate your involvement.
+
+The total amounts you contributed till now for various expenses during the trip have been recorded. These include charges for transportation, accommodation, food, activities, and other shared costs. Each expense has been accompanied by a description to provide transparency and clarity on why the amount was paid. The expenses were tracked along with timestamps, capturing the date and time of each transaction.
+      `, style: 'paragraph' },
+      { text: 'Amounts Paid: [DEBIT-DR]', style: 'subheader2' },
+      // Add your text and table styling here
+      {
+        table: {
+          widths: [100, '*', 60],
+          body: [
+            ['Date', 'Description', 'Amount'],
+            ...filteredData.map(item => [item.timestamp, item.description, item.amount]),
+          ],
+        },
+        style: 'tableStyle'
+      },
+
+      { text: '\nAmounts Received: [CREDIT-CR]', style: 'subheader2' },
+      {
+        table: {
+          widths: [100, '*', 60],
+          body: [
+            ['Date', 'Description', 'Amount'],
+            ...filteredDataCr.map(item => [item.timestamp, item.description, item.amount]),
+          ],
+        },
+        style: 'tableStyle'
+      },
+
+
+      { text: `Total Debit  : ${totalDebit}`, style: 'subheader2' },
+      { text: `Total Credit  : ${totalCredit}`, style: 'subheader2' },
+      { text: `Net Spending  : ${netSpent}`, style: 'subheader2' },
+
+      { text: `
+      We want to express our gratitude for your contributions, which played a crucial role in making the trip enjoyable and successful till now. Your participation helped create lasting memories for all of us.
+
+      In the spirit of fairness and transparency, we will be meticulously dividing and balancing the expenses incurred by each participant. Our goal is to ensure that everyone's contributions are fairly distributed, reflecting each individual's share of the overall expenses.
+      
+      If your debits exceed your credits, we sincerely thank you for your generosity and willingness to contribute beyond the minimum. Your commitment to making the trip enjoyable for all participants is truly appreciated.
+      
+      Please rest assured that our intention is to handle the expense distribution fairly, so that each participant's financial involvement is balanced, and everyone's experience is equally valued.
+      
+      Once again, we extend our heartfelt appreciation for your participation. If you have any questions or would like further information regarding the expense report, please feel free to reach out to us.
+      
+      Thank you and looking forward to more memorable journeys in the future.
+      
+Best regards,
+Khaja Pasha.
+
+      `, style: 'paragraph' },
+      // Add more content here
+    ],
+    styles: {
+      header: { fontSize: 16, bold: true, margin: [0, 0, 0, 10] },
+      paragraph: { fontSize: 12, lineHeight: 1.5 },
+      subheader: { fontSize: 14, bold: true, margin: [0, 10, 0, 5] },
+      subheader2: { fontSize: 12, bold: true, margin: [0, 5, 0, 5] },
+      tableStyle: { margin: [0, 10, 0, 10] },
+    },
+    filename: `${selectedParticipant}-${new Date().toISOString().split('T')[0]}.pdf`
+  };
+
+  // Generate PDF and show preview
+  pdfMake.createPdf(pdfDefinition).getDataUrl((dataUrl) => {
+    pdfPreview.innerHTML = `<iframe src="${dataUrl}" width="100%" height="600px"></iframe>`;
+  });
+}
+
