@@ -8,17 +8,16 @@
           }
         });
       </script>
-      <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Araku Trip</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="top-bar">
-        <marquee behavior="scroll" direction="left"> 🚂🚃🚃🚃🚃🚃🚃 * The Trip to Araku Starts from November 22, we have to leave on 21st night to Khammam. *   * Trip will end on November 26. *    * We will be reaching home on 27th Novmeber i.e., Monday * !!! Only Admin(Khaja Pasha) can update expense tabs,if you try to do, you can only see it. Please reach out to me if you have any expense to update.!!!</marquee>
+        <marquee behavior="scroll" direction="left"> The journey to Araku is scheduled to commence on November 22nd, with departure on the night of the 21st to Khammam. The trip is planned to conclude on November 26th, and we are expected to return home on November 27th, which falls on a Monday. Please note that only the admin is authorized to update expense details. If you have any expenses to report, kindly reach out to me for assistance. Your cooperation is greatly appreciated.</marquee>
     </div>
 	
     <div class="container">
@@ -49,8 +48,12 @@
                 <li>
                     <button class="btn-download" onclick="activateBot()">Chat with bot - Chatu</button>
                 </li>
+                
                 <li>
                     <a href="https://khaja-pasha-shaik.github.io/calculator-app/" target="_blank" class="btn-download">Budget Calculator</a>
+                </li>
+                <li>
+                    <button class="btn-download" onclick="clearLocalStorage()">FlushOut LS (ADMIN)</button>
                 </li>
                 <li>
                     <a href="https://forms.gle/4rcCDt1icCKj3VYG9" target="_blank" class="btn-download">Q&A</a>
@@ -80,9 +83,24 @@
             </div>
 
             <div id="expensesContainer" class="hidden-links">
-                <h2>Expenses</h2>
+                <div class="header">
+                    <h2>Expenses</h2>
+                    <button class="json-button" id="json-button" onclick="openPopupWithLocalStorage()">View JSON</button>
+                </div>
                 <div id="expensesList"></div>
             </div>
+            
+
+            <div id="jsonPopup" class="popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <textarea id="jsonTextArea" rows="15" readonly></textarea>
+                    <button onclick="copyToClipboard()">
+                        <i class="far fa-copy"> Copy</i> <!-- Clipboard icon -->
+                      </button>
+                </div>
+            </div>
+
 
             <div id="expenseStatisticsContainer" class="hidden-links">
                 <h2>Expense Statistics</h2>
@@ -101,7 +119,7 @@
             <div id="chatBox" class="hidden-links">
                 <div class="chat-container" id="chat-container">
                     <div class="nameAndStatus" id="nameAndStatus">
-                        <div class="name">Chatu - The Bot</div>
+                        <i class="fas fa-robot">  C h a t u - The Bot</i>
                         <div class="name">Online</div>
                     </div>
                     <div id="chat" class="chat">
@@ -138,7 +156,7 @@
             
                     <!-- Dropdowns for "From" and "Clearing to" -->
                     <label for="expenseFrom">From:</label>
-                    <select id="expenseFrom" disabled>
+                    <select id="expenseFrom" disabled onchange="checkFromAndClearing()">
                         <option value="Mahaboob">Mahaboob</option>
                         <option value="Arifa Begum">Arifa Begum</option>
                         <option value="Hussain">Hussain</option>
@@ -148,7 +166,7 @@
                     </select>
             
                     <label for="expenseClearingTo">Clearing to:</label>
-                    <select id="expenseClearingTo" disabled>
+                    <select id="expenseClearingTo" disabled onchange="checkFromAndClearing()">
                         <option value="Mahaboob">Mahaboob</option>
                         <option value="Arifa Begum">Arifa Begum</option>
                         <option value="Hussain">Hussain</option>
@@ -158,10 +176,21 @@
                     </select>
             
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submitButton">Submit</button>
                 </form>
                 
             </div>
+
+            <script>
+                const expenseNameSelect = document.getElementById("expenseName");
+                const expenseFromSelect = document.getElementById("expenseFrom");
+            
+                expenseNameSelect.addEventListener("change", function () {
+                    const selectedValue = expenseNameSelect.value;
+            
+                    expenseFromSelect.value = selectedValue;
+                });
+            </script>
             <p id="result"></p>
         </div>
 		
