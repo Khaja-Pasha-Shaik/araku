@@ -53,9 +53,8 @@
                 <li>
                     <button class="btn-download" onclick="activateBot()">Chat with bot - Chatu</button>
                 </li>
-                
                 <li>
-                    <a href="https://khaja-pasha-shaik.github.io/calculator-app/" target="_blank" class="btn-download">Budget Calculator</a>
+                    <button class="btn-download" onclick="activateForm()">Budget Calculator</button>
                 </li>
                 <li>
                     <button class="btn-download" onclick="clearLocalStorage()">FlushOut LS (ADMIN)</button>
@@ -198,6 +197,116 @@
                 </form>
                 
             </div>
+
+            <div id="budgetCalculatorContainer" class="budgetCalculatorContainer">
+            <form id="budgetCalculatorForm" class="budgetCalculatorForm">
+                <h2>Budget Calculator</h2>
+                <div class="traveler-input">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" value="Araku - Vizag Trip" readonly>
+            </div>
+
+            <div class="traveler-input">
+                <label for="duration">Duration (Days):</label>
+                <input type="number" id="duration" value="5">
+                </div>
+
+                <div class="traveler-input">
+                    <label for="nightsStay">Number of Nights of Stay:
+                    <span class="info-icon" title="Usually Duration Days - 1 day">
+                        <i class="fas fa-info-circle"></i>
+                      </span>
+                    </label>
+                    <input type="number" id="nightsStay" min="1">
+                    </div>
+
+                <fieldset>
+                    <legend>Number of Travelers :</legend>
+                    <div class="traveler-input">
+                    <label for="adults">Number of Adults:</label>
+                    <input type="number" id="noOfAdults">
+                </div>
+                <div class="traveler-input">
+                    <label for="children">Number of Children:</label>
+                    <input type="number" id="noOfChildren">
+                </div>
+                </fieldset><br>
+        
+                <fieldset>
+                    <legend>Accommodation:</legend>
+                    <label>
+                        <input type="radio" name="accommodation" value="budgetHotel"> Budget Hotel
+                    </label>
+                    <label>
+                        <input type="radio" name="accommodation" value="midRangeHotel"> Mid range 3 star
+                    </label>
+                    <label>
+                        <input type="radio" name="accommodation" value="luxuryHotel"> Luxury Hotel
+                    </label>
+                </fieldset><br>
+        
+                
+                <fieldset>
+                    <legend>Transportation:</legend>
+                    <div class="traveler-input">
+                    <label for="transportation">Mode of Transportation:</label>
+                    <select id="transportation">
+                        <option value="airTravel">Air Travel</option>
+                        <option value="train">Train</option>
+                        <option value="bus">Bus</option>
+                        <option value="car">Car</option>
+                    </select>
+                </div>
+
+                    <div id="classDropdownContainer">
+                        <div class="traveler-input">
+                        <label for="class">Select Class:</label>
+                        <select id="class"></select>
+                    </div>
+                    </div>
+                </fieldset><br>
+
+                <label for="glassTrain">Are you going to travel in glass coach?
+                    <span class="info-icon" title="This is important as the glass/vistadome coach ticket is 10X the Gen ticket">
+                        <i class="fas fa-info-circle"></i>
+                      </span>
+                </label>
+                <label>
+                    <input type="radio" name="glassTrain" value="yes"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="glassTrain" value="no"> No
+                </label><br>
+                
+                <label for="sightseeing">Are you going to try all the listed places in Day Wise Plan?</label>
+                <label>
+                    <input type="radio" name="sightseeing" value="yes"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="sightseeing" value="no"> No
+                </label><br>
+                <div class="traveler-input-tweak">
+                <label for="localTransport">What transportation would you use within destination?</label>
+                <select id="localTransport">
+                    <option value="localBuses">Local Buses</option>
+                    <option value="taxis">Taxis</option>
+                </select>
+                </div>
+                <div class="traveler-input-tweak">
+                <label for="shopping">How much are you going to spend on shopping in INR(Estimated):</label>
+                <input type="number" id="shopping"><br><br><br>
+                </div>
+                <button type="submit" id="calculateBudgetButton">Calculate Budget</button>
+            </form>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <div id="estimatedBudget"></div><br><br>
+              <button type="button" id="getEstimationSlipInModal">Get Estimation Slip</button>
+            </div>
+          </div>
 
             <script>
                 const expenseNameSelect = document.getElementById("expenseName");
