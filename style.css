@@ -317,6 +317,8 @@ thead th:not(:last-child) {
 
 #addExpenseFormContainer h2 {
   font-size: 24px;
+  justify-content: center;
+  text-align: center;
   color: white;
   margin-top: 0;
   margin-bottom: 20px;
@@ -657,7 +659,6 @@ thead th:not(:last-child) {
   background-color: grey; /* Keep the same grey color on hover */
 }
 
-
 .participantDropdownContainer {
   display: none;
   align-items: center;
@@ -677,3 +678,152 @@ thead th:not(:last-child) {
   margin-right: 10px; /* Add spacing between label and dropdown */
 }
 
+#budgetCalculatorContainer {
+  display: none; /* Hide the form by default */
+  margin-top: 20px;
+}
+
+#budgetCalculatorContainer h2 {
+  font-size: 24px;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding: 10px; /* Adjust padding as needed */
+  background: radial-gradient(circle, #dc0916, #f41fd6);
+  background-size: 200% 200%; /* Increase size for more dramatic effect */
+  border-radius: 10px; /* Add border-radius for soft cornering */
+  transition: background-position 0.5s; /* Add smooth transition */
+}
+
+#budgetCalculatorContainer h2:hover {
+  background-position: 100% 50%; /* Apply animation on hover */
+}
+
+
+
+#budgetCalculatorContainer label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#budgetCalculatorContainer select,
+#budgetCalculatorContainer input[type="text"],input[type="number"] {
+  width: 50%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#budgetCalculatorContainer button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#budgetCalculatorContainer button:hover {
+  background-color: #0056b3;
+}
+
+/* Optional: Add some additional spacing between form elements */
+#budgetCalculatorContainer form {
+  margin-bottom: 20px;
+}
+
+.traveler-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.traveler-input label {
+  flex-basis: 30%; /* Adjust the width as needed */
+  margin-right: 10px;
+}
+
+.traveler-input input {
+  flex-basis: 30%; /* Adjust the width as needed */
+}
+
+.traveler-input-tweak {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.traveler-input-tweak label {
+  flex-basis: 50%; /* Adjust the width as needed */
+  margin-right: 10px;
+}
+
+.traveler-input-tweak input {
+  flex-basis: 30%; /* Adjust the width as needed */
+}
+
+/* Style for the info icon */
+.info-icon {
+  display: inline-block;
+  position: relative;
+  margin-left: 5px;
+  font-size: 14px;
+  color: #007BFF;
+  cursor: pointer;
+}
+
+
+/* Style for modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 20% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#getEstimationSlipInModal {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background: radial-gradient(circle, #dc0916, #f41fd6);
+  border-radius: 10px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#getEstimationSlipInModal:hover {
+  background: linear-gradient(135deg, #FFB88C, #FF7F8E);
+}
