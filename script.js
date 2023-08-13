@@ -109,6 +109,9 @@ function clearRightPane() {
   document.getElementById('json-button').style.display = 'none';
   document.getElementById('participantDropdownContainer').style.display = 'none';
   document.getElementById('pdfPreview').style.display = 'none';
+
+  document.getElementById('budgetCalculatorContainer').style.display = 'none';
+
   var ticketLinks = document.getElementById("ticketLinks");
   ticketLinks.innerHTML = "";
   ticketLinks.classList.remove("show-details");
@@ -140,6 +143,7 @@ function clearRightPane() {
   expensesContainer.classList.remove("show-details");
 
   document.getElementById('expenseStatisticsContainer').style.display = 'none';
+
   document.getElementById('videoPlayer').style.display = 'none';
 
 }
@@ -508,18 +512,18 @@ function submitExpense(event) {
       clearingTo
     };
 
-      localExpenses.push(expense);
-      localStorage.setItem('expenses', JSON.stringify(localExpenses));
-      console.log('Added expense to local storage: ', JSON.stringify(localExpenses));
+    localExpenses.push(expense);
+    localStorage.setItem('expenses', JSON.stringify(localExpenses));
+    console.log('Added expense to local storage: ', JSON.stringify(localExpenses));
 
-      document.getElementById("expenseName").value = "";
-      document.getElementById("expenseAmount").value = "";
-      document.getElementById("expenseDescription").value = "";
+    document.getElementById("expenseName").value = "";
+    document.getElementById("expenseAmount").value = "";
+    document.getElementById("expenseDescription").value = "";
 
-      document.getElementById('result').style.display = 'block';
-      document.getElementById("result").textContent = "Expense added successfully.";
+    document.getElementById('result').style.display = 'block';
+    document.getElementById("result").textContent = "Expense added successfully.";
 
-      showExpenseStatistics();
+    showExpenseStatistics();
 
   } else {
     document.getElementById('result').style.display = 'block';
@@ -548,9 +552,9 @@ function checkFromAndClearing() {
   var submitButton = document.getElementById("submitButton");
 
   if (expenseFrom === expenseClearingTo) {
-      submitButton.disabled = true;
+    submitButton.disabled = true;
   } else {
-      submitButton.disabled = false;
+    submitButton.disabled = false;
   }
 }
 
@@ -886,16 +890,18 @@ async function generateAndShowExpenseReport() {
   const totalDebit = filteredData.reduce((total, item) => total + item.amount, 0);
   const filteredDataCr = jsonData.filter(item => ((item.clearingTo === selectedParticipant) && item.clearingCheck));
   const totalCredit = filteredDataCr.reduce((total, item) => total + item.amount, 0);
-  const netSpent = totalDebit-totalCredit;
+  const netSpent = totalDebit - totalCredit;
 
   const pdfDefinition = {
     content: [
       { text: 'Expense Report: Vizag and Araku Trip\n\n', style: 'header' },
-      { text: `Dear ${selectedParticipant},\n
+      {
+        text: `Dear ${selectedParticipant},\n
       We hope this message finds you well. And wishing that you are enjoying the trip to Vizag and Araku, we would like to provide you with an overview of the expenses incurred during the journey. Your participation contributed to a memorable experience, and we appreciate your involvement.
 
 The total amounts you contributed till now for various expenses during the trip have been recorded. These include charges for transportation, accommodation, food, activities, and other shared costs. Each expense has been accompanied by a description to provide transparency and clarity on why the amount was paid. The expenses were tracked along with timestamps, capturing the date and time of each transaction.
-      `, style: 'paragraph' },
+      `, style: 'paragraph'
+      },
       { text: 'Amounts Paid: [DEBIT-DR]', style: 'subheader2' },
       // Add your text and table styling here
       {
@@ -926,7 +932,8 @@ The total amounts you contributed till now for various expenses during the trip 
       { text: `Total Credit  : ${totalCredit}`, style: 'subheader2' },
       { text: `Net Spending  : ${netSpent}`, style: 'subheader2' },
 
-      { text: `
+      {
+        text: `
       We want to express our gratitude for your contributions, which played a crucial role in making the trip enjoyable and successful till now. Your participation helped create lasting memories for all of us.
 
       In the spirit of fairness and transparency, we will be meticulously dividing and balancing the expenses incurred by each participant. Our goal is to ensure that everyone's contributions are fairly distributed, reflecting each individual's share of the overall expenses.
@@ -942,7 +949,8 @@ The total amounts you contributed till now for various expenses during the trip 
 Best regards,
 Khaja Pasha.
 
-      `, style: 'paragraph' },
+      `, style: 'paragraph'
+      },
       // Add more content here
     ],
     styles: {
@@ -961,3 +969,320 @@ Khaja Pasha.
   });
 }
 
+
+const budgetCalculatorForm = document.getElementById('budgetCalculatorForm');
+
+function activateForm() {
+  clearRightPane();
+  document.getElementById('budgetCalculatorContainer').style.display = 'block';
+}
+
+// You can add event listeners or other logic for your form elements here
+
+
+const transportationDropdown = document.getElementById('transportation');
+const classDropdown = document.getElementById('class');
+const classDropdownContainer = document.getElementById('classDropdownContainer');
+
+// Event listener for transportation dropdown change
+transportationDropdown.addEventListener('change', updateClassDropdown);
+
+// Function to update class dropdown options
+function updateClassDropdown() {
+  document.getElementById('budgetCalculatorForm').style.display = 'block';
+  const selectedTransportation = transportationDropdown.value;
+  // Clear existing options
+  classDropdown.innerHTML = '';
+
+  if (selectedTransportation === 'airTravel') {
+    // Add options for air travel classes
+    const airTravelClasses = ['Business class', 'Economy', 'First Class'];
+    for (const className of airTravelClasses) {
+      const option = document.createElement('option');
+      option.value = className;
+      option.textContent = className;
+      classDropdown.appendChild(option);
+    }
+    // Show class dropdown container
+    classDropdownContainer.style.display = 'block';
+  } else if (selectedTransportation === 'train') {
+    // Add options for train classes
+    const trainClasses = ['Gen', 'Sleeper', '3AC', '2AC', '1AC'];
+    for (const className of trainClasses) {
+      const option = document.createElement('option');
+      option.value = className;
+      option.textContent = className;
+      classDropdown.appendChild(option);
+    }
+    // Show class dropdown container
+    classDropdownContainer.style.display = 'block';
+  } else {
+    // Hide class dropdown container for other transportation modes
+    classDropdownContainer.style.display = 'none';
+  }
+}
+
+// Initial call to update class dropdown based on default transportation
+updateClassDropdown();
+
+const calculateBudgetButton = document.getElementById('calculateBudgetButton');
+const modal = document.getElementById('myModal');
+const closeBtn = document.querySelector('.close');
+const getEstimationSlipInModal = document.getElementById('getEstimationSlipInModal');
+
+// Event listener for form submission to calculate budget
+calculateBudgetButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  calculateAndDisplayBudget();
+});
+
+// Event listener for estimation slip button
+calculateBudgetButton.addEventListener('click', openModal);
+
+// Event listener for close button in modal
+closeBtn.addEventListener('click', closeModal);
+
+// Event listener for Get Estimation Slip button in modal
+getEstimationSlipInModal.addEventListener('click', generateEstimationSlip);
+
+function openModal() {
+  modal.style.display = 'block';
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function calculateAndDisplayBudget() {
+  let duration = parseFloat(document.getElementById('duration').value);
+  let nightsStay = parseFloat(document.getElementById('nightsStay').value);
+  let noOfAdults = parseInt(document.getElementById('noOfAdults').value);
+  let noOfChildren = parseInt(document.getElementById('noOfChildren').value);
+
+  if (isNaN(duration) || duration <= 0) {
+    duration = 0; // Default value if not filled or invalid
+  }
+
+  if (isNaN(nightsStay) || nightsStay <= 0) {
+    nightsStay = 0; // Default value if not filled or invalid
+  }
+
+  if (isNaN(noOfAdults) || noOfAdults <= 0) {
+    noOfAdults = 0; // Default value if not filled or invalid
+  }
+
+  if (isNaN(noOfChildren) || noOfChildren < 0) {
+    noOfChildren = 0; // Default value if not filled or invalid
+  }
+
+  const accommodationRadios = document.getElementsByName('accommodation');
+  let selectedAccommodation = '';
+  for (const radio of accommodationRadios) {
+    if (radio.checked) {
+      selectedAccommodation = radio.value;
+      break;
+    }
+  }
+
+
+  const transportationSelect = document.getElementById('transportation').value;
+  const classSelect = document.getElementById('class').value;
+
+  const selectedGlassTrainValue = document.querySelector('input[name="glassTrain"]:checked').value;
+
+  const allSightSeeingValue = document.querySelector('input[name="sightseeing"]:checked').value;
+
+  const localTransportSelect = document.getElementById('localTransport').value;
+
+  let shoppingSpend = parseInt(document.getElementById('shopping').value);
+  // Your budget calculation logic
+  const totalCost = calculateTotalCost(duration, nightsStay, noOfAdults, noOfChildren,
+    selectedAccommodation, transportationSelect, classSelect, selectedGlassTrainValue,
+    allSightSeeingValue, localTransportSelect, shoppingSpend);
+  // Display the estimated budget in the modal
+
+  const estimatedBudget = document.getElementById('estimatedBudget');
+  estimatedBudget.textContent = 'Estimated Budget: Rs. ' + totalCost;
+
+  // Show the modal
+  openModal();
+}
+
+let allRoundCost = 0;
+
+function calculateTotalCost(duration, nightsStay, noOfAdults, noOfChildren,
+  selectedAccommodation, selectedTransportation, selectedClass, isGlassTrain,
+  isAllSightSeeing, localTransportSelect, shoppingSpend) {
+  console.log('Glass Train value ::', isGlassTrain);
+  console.log(selectedAccommodation);
+  let costPerNightPerAdult = 0;
+  if (selectedAccommodation.includes('budget')) {
+    costPerNightPerAdult = 500;
+    console.log(costPerNightPerAdult);
+  } else if (selectedAccommodation.includes('mid')) {
+    costPerNightPerAdult = 615;
+    console.log(costPerNightPerAdult);
+  } else if (selectedAccommodation.includes('luxury')) {
+    costPerNightPerAdult = 1200;
+    console.log(costPerNightPerAdult);
+  }
+
+  let transportationCost = 0;
+  let classCost = 0;
+
+  if (selectedTransportation === 'airTravel') {
+    if (selectedClass === 'Business class') {
+      classCost = 10000; // Sample cost for Business class
+    } else if (selectedClass === 'Economy') {
+      classCost = 3500; // Sample cost for Economy class
+    } else if (selectedClass === 'First Class') {
+      classCost = 15000; // Sample cost for First Class
+    }
+    // Additional calculations or adjustments for airTravel
+  } else if (selectedTransportation === 'train') {
+    if (selectedClass === 'Gen') {
+      classCost = 500; // Sample cost for General class
+    } else if (selectedClass === 'Sleeper') {
+      classCost = 1000; // Sample cost for Sleeper class
+    } else if (selectedClass === '3AC') {
+      classCost = 1500; // Sample cost for Sleeper class
+    } else if (selectedClass === '2AC') {
+      classCost = 2500; // Sample cost for Sleeper class
+    } else if (selectedClass === '1AC') {
+      classCost = 4000; // Sample cost for Sleeper class
+    }
+    // Additional calculations or adjustments for train
+  }
+  transportationCost = noOfAdults * classCost; // Sample cost per day
+
+  let glassTrainTicks = 75;
+
+  if (isGlassTrain == 'yes') {
+    glassTrainTicks = 750;
+  }
+
+  let someSightSeeing = 400;
+
+  if (isAllSightSeeing == 'yes') {
+    someSightSeeing = 700;
+  }
+
+  let localTransportCost = 0;
+  console.log('Local trans select :: ', localTransportSelect);
+  if (localTransportSelect == 'taxis') {
+    localTransportCost = 1600;
+  } else {
+    localTransportCost = 400;
+  }
+
+  const costPerNightPerChild = 0;
+  const totalCost = (nightsStay * (costPerNightPerAdult * noOfAdults + costPerNightPerChild * noOfChildren)) +
+    transportationCost + (noOfAdults * glassTrainTicks) +
+    (noOfAdults * someSightSeeing) + (noOfAdults * localTransportCost) + shoppingSpend;
+  allRoundCost = totalCost;
+  return totalCost;
+}
+
+function generateEstimationSlip() {
+  // Collect form input values
+  const destination = document.getElementById('destination').value;
+  const duration = document.getElementById('duration').value;
+  const nightsStay = document.getElementById('nightsStay').value;
+  const noOfAdults = document.getElementById('noOfAdults').value;
+  const noOfChildren = document.getElementById('noOfChildren').value;
+  const accommodationRadios = document.getElementsByName('accommodation');
+
+  // Find the selected radio button
+  let selectedAccommodation = '';
+  for (const radio of accommodationRadios) {
+    if (radio.checked) {
+      selectedAccommodation = radio.value;
+      break;
+    }
+  }
+  const transportationSelect = document.getElementById('transportation').value;
+  const classSelect = document.getElementById('class').value;
+
+  const selectedGlassTrainValue = document.querySelector('input[name="glassTrain"]:checked').value;
+
+  const allSightSeeingValue = document.querySelector('input[name="sightseeing"]:checked').value;
+
+  const localTransportSelect = document.getElementById('localTransport').value;
+
+  const shoppingSpend = parseInt(document.getElementById('shopping').value);
+
+  // Create PDF content
+  const pdfContent = [
+    { text: 'Estimation Slip', style: 'header' },
+
+    {
+      table: {
+        widths: ['70%', '30%'],
+        body: [
+          ['Selection', 'Given Value'],
+          ['Destination', `${destination}`],
+          ['Duration (Days)', `${duration}`],
+          ['Number of Nights of Stay (*Usually this should be Duration Days - 1 Day)', `${nightsStay}`],
+          ['Number of Adults', `${noOfAdults}`],
+          ['Number of Children', `${noOfChildren}`],
+          ['Accommodation', `${selectedAccommodation}`],
+          ['Mode of Transportation', `${transportationSelect}`],
+          ['Selected Class', `${classSelect}`],
+          ['Travel in Glass Coach', `${selectedGlassTrainValue}`],
+          ['Sightseeing as in Day Wise Plan', `${allSightSeeingValue}`],
+          ['Transport within Destination', `${localTransportSelect}`],
+          ['Shopping Estimation (INR)', `${shoppingSpend}`],
+          ['Total', `Rs. ${allRoundCost}/-`],
+        ],
+      },
+      style: 'tableStyle'
+    },
+
+    {
+      text: [
+        '\n\nThank you for using our Budget Calculator. Please note that this estimation is provided ',
+        'based on the information you provided. Actual expenses may vary due to factors such as ',
+        'fluctuating prices, unforeseen circumstances, and individual preferences. We recommend ',
+        'using this estimation as a guideline and planning accordingly to ensure a memorable and ',
+        'enjoyable travel experience.\n\n'
+      ],
+      style: 'professionalNote'
+    },
+  ];
+
+  // Define PDF styles
+  const styles = {
+    header: {
+      fontSize: 18,
+      bold: true,
+      alignment: 'center',
+      margin: [0, 0, 0, 10]
+    },
+    tableStyle: {
+      margin: [0, 10, 0, 10]
+    },
+    note: {
+      fontSize: 10,
+      italics: true,
+      alignment: 'center',
+      margin: [0, 10, 0, 10]
+    },
+    professionalNote: {
+      fontSize: 12,
+      lineHeight: 1.3,
+      margin: [0, 10, 0, 0],
+      color: '#555',
+      alignment: 'left'
+    }
+  };
+
+  // Create PDF document definition
+  const pdfDefinition = {
+    content: pdfContent,
+    styles: styles,
+  };
+
+  document.getElementById('budgetCalculatorForm').reset();
+  closeModal();
+  pdfMake.createPdf(pdfDefinition).download('Estimation_Slip.pdf');
+}
