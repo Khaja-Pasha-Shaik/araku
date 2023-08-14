@@ -438,7 +438,7 @@ thead th:not(:last-child) {
   flex-direction: column;
   justify-content: space-between;
   font-size: 10px;
-  background-color: #f5f5f5;
+  background-color: #e0e0d1;
 }
 
 .chat {
@@ -456,11 +456,12 @@ thead th:not(:last-child) {
 .nameAndStatus {
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #4caf50;
+  background: linear-gradient(to right, #107c10, #2da833);
   color: white;
   padding: 5px 10px;
   font-weight: bold;
 }
+
 
 .options {
   display: flex;
@@ -485,23 +486,25 @@ thead th:not(:last-child) {
 }
 
 .bot {
-  color: green;
   align-self: flex-start;
-  background-color: #fff;
+  background-color: white;  
+  color: black;
   padding: 8px;
   border-radius: 5px;
   margin-bottom: 8px;
 }
 
+
 .user {
-  color: red;
+  color: white;
   text-align: right;
   align-self: flex-end;
-  background-color: #ffc2c2;
+  background: linear-gradient(to left, #e64d4d, #f41fd6);
   padding: 8px;
   border-radius: 5px;
   margin-bottom: 8px;
 }
+
 
 #chatBox .input {
   display: flex;
@@ -517,7 +520,7 @@ thead th:not(:last-child) {
 }
 
 #chatBox #sendBotMessageBtn {
-  background-color: #4caf50;
+  background: linear-gradient(to left, #dc0916, #f41fd6);
   color: white;
   border: none;
   border-radius: 5px;
@@ -681,6 +684,12 @@ thead th:not(:last-child) {
 #budgetCalculatorContainer {
   display: none; /* Hide the form by default */
   margin-top: 20px;
+  max-height: 120vh;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  font-size:small;
 }
 
 #budgetCalculatorContainer h2 {
@@ -773,7 +782,14 @@ thead th:not(:last-child) {
   margin-left: 5px;
   font-size: 14px;
   color: #007BFF;
-  cursor: pointer;
+  cursor:pointer;
+}
+
+@media (max-width: 767px) {
+  .info-icon {
+    touch-action: manipulation; 
+    cursor: pointer; 
+  }
 }
 
 
@@ -813,7 +829,7 @@ thead th:not(:last-child) {
   display: block;
   width: 100%;
   padding: 8px;
-  background: radial-gradient(circle, #dc0916, #f41fd6);
+  background: linear-gradient(135deg, #FFB88C, #FF7F8E);
   border-radius: 10px;
   color: #ffffff;
   text-align: center;
@@ -825,5 +841,42 @@ thead th:not(:last-child) {
 }
 
 #getEstimationSlipInModal:hover {
-  background: linear-gradient(135deg, #FFB88C, #FF7F8E);
+  background: radial-gradient(circle, #f41fd6, #dc0916);
+}
+
+
+.top-bar {
+  background-color: #007BFF;
+  color: white;
+  padding: 5px;
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer {
+  font-size: 14px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #dc0916, #f41fd6);
+  -webkit-background-clip: text; /* Apply the gradient to the text */
+  background-clip: text; /* Apply the gradient to the text */
+  color: transparent; /* Make the text transparent */
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+legend {
+  background: linear-gradient(135deg, #dc0916, #f41fd6);
+  color: white;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 2px 8px;
 }
