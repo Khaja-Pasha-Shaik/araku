@@ -19,7 +19,12 @@
 </head>
 <body>
 	<div class="top-bar">
-        <marquee behavior="scroll" direction="left"> The journey to Araku is scheduled to commence on November 22nd, with departure on the night of the 21st to Khammam. The trip is planned to conclude on November 26th, and we are expected to return home on November 27th, which falls on a Monday. Please note that only the admin is authorized to update expense details. If you have any expenses to report, kindly reach out to me for assistance. Your cooperation is greatly appreciated.</marquee>
+        <div class="top-bar-content">
+            <marquee behavior="scroll" direction="left"> The journey to Araku is scheduled to commence on November 22nd, with departure on the night of the 21st to Khammam. The trip is planned to conclude on November 26th, and we are expected to return home on November 27th, which falls on a Monday. Please note that only the admin is authorized to update expense details. If you have any expenses to report, kindly reach out to me for assistance. Your cooperation is greatly appreciated.</marquee>
+            <div class="timer" id="timer">
+                <span id="daysToTrip">Calculating...</span>
+            </div>
+        </div>
     </div>
 	
     <div class="container">
@@ -138,7 +143,7 @@
                     <div class="nameAndStatus" id="nameAndStatus">
                         <i class="fas fa-robot">  C h a t u - The Bot</i>
                         <div class="name">Online</div>
-                    </div>
+                    </div><br>
                     <div id="chat" class="chat">
                     </div>
                     <div class="input">
