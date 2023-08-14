@@ -1,3 +1,16 @@
+// Get the current date and your trip date (August 28th)
+const currentDate = new Date();
+const tripDate = new Date('2023-11-21');
+
+// Calculate the difference in days
+const timeDifference = tripDate - currentDate;
+const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+// Display the countdown in the HTML
+const daysToTripElement = document.getElementById('daysToTrip');
+daysToTripElement.textContent = daysDifference + ' Days to Trip';
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const downloadButtons = document.querySelectorAll(".btn-download");
   const rightPane = document.querySelector(".right-pane");
@@ -1016,6 +1029,17 @@ function updateClassDropdown() {
     }
     // Show class dropdown container
     classDropdownContainer.style.display = 'block';
+  } else if (selectedTransportation === 'bus') {
+    // Add options for train classes
+    const busClasses = ['Sleeper AC', 'Sleeper Non-AC', 'Seater AC', 'Seater Non-AC'];
+    for (const className of busClasses) {
+      const option = document.createElement('option');
+      option.value = className;
+      option.textContent = className;
+      classDropdown.appendChild(option);
+    }
+    // Show class dropdown container
+    classDropdownContainer.style.display = 'block';
   } else {
     // Hide class dropdown container for other transportation modes
     classDropdownContainer.style.display = 'none';
@@ -1152,6 +1176,18 @@ function calculateTotalCost(duration, nightsStay, noOfAdults, noOfChildren,
       classCost = 4000; // Sample cost for Sleeper class
     }
     // Additional calculations or adjustments for train
+  } else if(selectedTransportation === 'bus'){
+    if (selectedClass === 'Sleeper Non-AC') {
+      classCost = 1100; // Sample cost for General class
+    } else if (selectedClass === 'Sleeper AC') {
+      classCost = 1390; // Sample cost for Sleeper class
+    } else if (selectedClass === 'Seater AC') {
+      classCost = 1000; // Sample cost for Sleeper class
+    } else if (selectedClass === 'Seater Non-AC') {
+      classCost = 700; // Sample cost for Sleeper class
+    }  
+  }else if(selectedTransportation === 'car'){
+    classCost = duration * 2500; 
   }
   transportationCost = noOfAdults * classCost; // Sample cost per day
 
