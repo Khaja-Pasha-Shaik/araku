@@ -22,11 +22,53 @@
         <div class="top-bar-content">
             <marquee behavior="scroll" direction="left"> The journey to Araku is scheduled to commence on November 22nd, with departure on the night of the 21st to Khammam. The trip is planned to conclude on November 26th, and we are expected to return home on November 27th, which falls on a Monday. Please note that only the admin is authorized to update expense details. If you have any expenses to report, kindly reach out to me for assistance. Your cooperation is greatly appreciated.</marquee>
             <div class="timer" id="timer">
-                <span id="daysToTrip">Calculating...</span>
-            </div>
+                <span id="daysToTrip" class="clickable">Calculating...</span>
+                <div class="event-pane" id="eventPane">
+                    <button id="closeButtonEvent" class="close-button-event">×</button>
+                  <h3>Major Events</h3>
+                  <ul class="clickable-date" id="clickable-date">
+                    <li data-event-id="1" onclick="handleDateClick('Nov - 21')"><strong><span class="toggle-icon">></span> Nov - 21</strong></li>
+                    <div class="event-details" id="eventDetails-1">
+                        <!-- Event details for the selected date will be displayed here -->
+                      </div>
+
+                    <li data-event-id="2" onclick="handleDateClick('Nov - 22')"><strong><span class="toggle-icon">></span> Nov - 22</strong></li>
+                    <div class="event-details" id="eventDetails-2">
+                        <!-- Event details for the selected date will be displayed here -->
+                      </div>
+                    
+                    <li data-event-id="3" onclick="handleDateClick('Nov - 23')"><strong><span class="toggle-icon">></span> Nov - 23</strong></li>
+                    <div class="event-details" id="eventDetails-3">
+                        <!-- Event details for the selected date will be displayed here -->
+                      </div>
+                    
+                    <li data-event-id="4" onclick="handleDateClick('Nov - 24')"><strong><span class="toggle-icon">></span> Nov - 24</strong></li>
+                    <div class="event-details" id="eventDetails-4">
+                        <!-- Event details for the selected date will be displayed here -->
+                      </div>
+                    
+                    <li data-event-id="5" onclick="handleDateClick('Nov - 25')"><strong><span class="toggle-icon">></span> Nov - 25</strong></li>
+                    <div class="event-details" id="eventDetails-5">
+                        <!-- Event details for the selected date will be displayed here -->
+                      </div>
+                    
+                    <li data-event-id="6" onclick="handleDateClick('Nov - 26')"><strong><span class="toggle-icon">></span> Nov - 26</strong></li>
+                    <div class="event-details" id="eventDetails-6">
+                        <!-- Event details for the selected date will be displayed here -->
+                      </div>
+                    
+                    <li data-event-id="7" onclick="handleDateClick('Nov - 27')"><strong><span class="toggle-icon">></span> Nov - 27</strong></li>
+                    <div class="event-details" id="eventDetails-7">
+                        <!-- Event details for the selected date will be displayed here -->
+                      </div>
+                    
+                  </ul>
+                  
+                </div>
+              </div>
         </div>
     </div>
-	
+    
     <div class="container">
         <div class="left-pane">
             <h2>Options</h2>
@@ -38,10 +80,13 @@
                     <button class="btn-download" onclick="showHotelLinks()">Download Hotel Bookings</button>
                 </li>
                 <li>
+                    <button class="btn-download" onclick="showItineraryLinks()">Download Itinerary</button>
+                </li>
+                <li>
                     <button class="btn-download" onclick="showDayWisePlan()">Day Wise Plan</button>
                 </li>
                 <li>
-                    <button class="btn-download" onclick="showItineraryLinks()">Download Itinerary</button>
+                    <button class="btn-download" onclick="showCheckList()">Travel Checklist</button>
                 </li>
                 <li>
                     <button class="btn-download" onclick="showExpenses()">Add Expense</button>
@@ -123,6 +168,10 @@
                 <source src="route.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+                    <div id="checklistContent" class="checklistContent">
+                      <!-- Checklist content will be populated dynamically -->
+                    </div>
 
             <div id="participantDropdownContainer" class="participantDropdownContainer">
                 <label for="participantDropdown">Select Participant:</label>
