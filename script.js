@@ -1276,7 +1276,7 @@ function generateEstimationSlip() {
 
     {
       text: [
-        '\n\nThank you for using our Budget Calculator. Please note that this estimation is provided ',
+        '\n\n Please note that this estimation is provided ',
         'based on the information you provided. Actual expenses may vary due to factors such as ',
         'fluctuating prices, unforeseen circumstances, and individual preferences. We recommend ',
         'using this estimation as a guideline and planning accordingly to ensure a memorable and ',
