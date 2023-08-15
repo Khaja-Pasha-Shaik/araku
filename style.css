@@ -858,12 +858,10 @@ thead th:not(:last-child) {
 }
 
 .timer {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
-  background: linear-gradient(135deg, #dc0916, #f41fd6);
-  -webkit-background-clip: text; /* Apply the gradient to the text */
-  background-clip: text; /* Apply the gradient to the text */
-  color: transparent; /* Make the text transparent */
+  color: #f41fd6;
+  cursor: pointer;
 }
 
 fieldset {
@@ -880,3 +878,142 @@ legend {
   border-radius: 5px;
   padding: 2px 8px;
 }
+
+/* event pane ----------------------------- */
+
+.event-pane {
+  display: none;
+  color: white;
+  background: linear-gradient(135deg, #ff6b6b, #FF7F8E);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1000;
+  width: 250px; /* Adjust width as needed */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  right: 0;
+}
+
+.event-pane h3{
+  color: whitesmoke;
+}
+
+
+/* Style for the date list */
+.clickable-date {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.clickable-date li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background: linear-gradient(135deg, #dc0916, #f41fd6);
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-right: 6px;
+}
+
+.clickable-date li:hover {
+  cursor: pointer;
+  background: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.date-text {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.date-text:hover {
+  text-decoration: underline;
+}
+
+/* Style for the close button */
+.close-button-event {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: white;
+  font-weight: bolder;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+.event-details {
+  display: none;
+  margin-top: 10px;
+  right: 10px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  position: relative; /* Added to ensure proper positioning */
+  left: 0;
+  text-align: left;
+  font-weight: lighter;
+}
+
+.toggle-icon {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+/* Your existing styles... */
+
+.checklist-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  font-size: small;
+}
+
+.category {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.category label {
+  display: block inline;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.checklistContent {
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display:none;
+}
+
+/* Optional: Add transitions for a smoother effect */
+.checklist-container label,
+.checklistContent label {
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.checklist-container input:checked + label,
+.checklistContent input:checked + label {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+/* Optional: Style the checkboxes */
+.checklist-container input[type="checkbox"],
+.checklistContent input[type="checkbox"] {
+  margin-right: 5px;
+  font-size: 10px;
+}
+
+
