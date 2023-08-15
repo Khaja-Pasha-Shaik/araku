@@ -1,14 +1,86 @@
-// Get the current date and your trip date (August 28th)
-const currentDate = new Date();
-const tripDate = new Date('2023-11-21');
+const events = {
+  'Nov - 21': '★ Leave to Khammam at 8PM. Train to VSKP at 11:30PM',
+  'Nov - 22': '★ Touch down VSKP at 8AM <br>★ [Tentative] Luggages in cloak/Visit a place, then check-in the hotel <br>★ Get info on camera rental for 5 days<br>★ Bike rentals for 2 full days<br>★ Late re-entry, will only return to room after 9PM',
+  'Nov - 23': '★ Wakeup 5:30 AM <br>★ Late re-entry, will only return to room after 9PM',
+  'Nov - 24': '★ Wakeup 4:00 AM to catch araku train at 6:45 AM<br>★ Check-in Hotel at 11:30 AM <br>★ Fresh up start exploring Araku.<br>★ Very IMP get details of Lambasingi when to start',
+  'Nov - 25': '★ Wakeup 2:30 AM, to Lambasingi',
+  'Nov - 26': '★ Wakeup 7 AM, have breakfast in hotel checkout by 9:30AM<br>★ Ask cab to drop at Araku Valley bus station<br>★ Get info on bus timings<br>★ Very IMP to reach VSKP by 8PM <br>★ Return Camera if taken',
+  'Nov - 27': '★ Touch down Khammam at 6AM, reach home by 9AM <br>★ Cant see me(🏔️) now!!',
+  // Add more events for other dates
+};
 
-// Calculate the difference in days
-const timeDifference = tripDate - currentDate;
-const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+const dateMapping = {
+  'Nov - 21': 1,
+  'Nov - 22': 2,
+  'Nov - 23': 3,
+  'Nov - 24': 4,
+  'Nov - 25': 5,
+  'Nov - 26': 6,
+  'Nov - 27': 7,
+};
 
-// Display the countdown in the HTML
-const daysToTripElement = document.getElementById('daysToTrip');
-daysToTripElement.textContent = daysDifference + ' Days to Trip';
+function handleDateClick(selectedDate) {
+  const selectedEventDetails = document.getElementById(`eventDetails-${dateMapping[selectedDate]}`);
+
+  // Check if the selected event details are currently displayed
+  const isCurrentlyDisplayed = selectedEventDetails.style.display === 'block';
+
+  // Hide all event details
+  const eventDetailsList = document.querySelectorAll('.event-details');
+  eventDetailsList.forEach(detailsElement => {
+    detailsElement.style.display = 'none';
+  });
+
+  // Toggle the display of the selected event details based on current state
+  selectedEventDetails.style.display = isCurrentlyDisplayed ? 'none' : 'block';
+
+  var toggleIcon = selectedEventDetails.previousElementSibling.querySelector(".toggle-icon");
+  // Set the event details content based on the selected date
+  if (!isCurrentlyDisplayed) {
+    selectedEventDetails.innerHTML = events[selectedDate];
+    toggleIcon.style.transform = "rotate(90deg)";
+  } else {
+    selectedEventDetails.innerHTML = ''; // Clear the content when hiding
+    
+    toggleIcon.style.transform = "rotate(0deg)";
+  }
+
+
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const daysToTripElement = document.getElementById('daysToTrip');
+  const eventPane = document.getElementById('eventPane');
+  const closeButton = document.getElementById('closeButtonEvent');
+
+  const calculateDaysToTrip = () => {
+    const currentDate = new Date();
+    const tripDate = new Date('2023-11-21');
+    const timeDifference = tripDate - currentDate;
+    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    daysToTripElement.textContent = daysDifference + ' Days to Trip';
+  };
+
+  // Toggle event pane on click
+  daysToTripElement.addEventListener('click', () => {
+    eventPane.classList.toggle('show');
+    eventPane.style.display = eventPane.classList.contains('show') ? 'block' : 'none';
+  });
+
+  // Close button click event
+  closeButton.addEventListener('click', () => {
+    eventPane.classList.remove('show');
+    eventPane.style.display = 'none';
+    const eventDetailsList = document.querySelectorAll('.event-details');
+  eventDetailsList.forEach(detailsElement => {
+    detailsElement.style.display = 'none'; // Hide all event details
+  });
+  });
+
+  // Calculate and display the days to trip
+  calculateDaysToTrip();
+});
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -122,6 +194,7 @@ function clearRightPane() {
   document.getElementById('json-button').style.display = 'none';
   document.getElementById('participantDropdownContainer').style.display = 'none';
   document.getElementById('pdfPreview').style.display = 'none';
+  document.getElementById('checklistContent').style.display = 'none';
 
   document.getElementById('budgetCalculatorContainer').style.display = 'none';
 
@@ -158,6 +231,9 @@ function clearRightPane() {
   document.getElementById('expenseStatisticsContainer').style.display = 'none';
 
   document.getElementById('videoPlayer').style.display = 'none';
+
+  const checklistContent = document.getElementById('checklistContent');
+  checklistContent.innerHTML = ''; 
 
 }
 
@@ -1276,7 +1352,7 @@ function generateEstimationSlip() {
 
     {
       text: [
-        '\n\n Please note that this estimation is provided ',
+        '\n\nPlease note that this estimation is provided ',
         'based on the information you provided. Actual expenses may vary due to factors such as ',
         'fluctuating prices, unforeseen circumstances, and individual preferences. We recommend ',
         'using this estimation as a guideline and planning accordingly to ensure a memorable and ',
@@ -1321,4 +1397,71 @@ function generateEstimationSlip() {
   document.getElementById('budgetCalculatorForm').reset();
   closeModal();
   pdfMake.createPdf(pdfDefinition).download('Estimation_Slip.pdf');
+}
+
+
+function showCheckList() {
+  // Clear existing content in right pane
+  clearRightPane();
+  document.getElementById('checklistContent').style.display = 'block';
+
+  const checklistHeading = document.createElement('h2');
+  checklistHeading.textContent = "Travel Checklist";
+
+  // Create a checklist container
+  const checklistContainer = document.createElement('div');
+  checklistContainer.classList.add('checklist-container');
+
+  // Append the heading to the checklist container
+  checklistContainer.appendChild(checklistHeading);
+  // Define checklist items and categories
+  const categories = {
+      "Travel/Personal Documents": ["Aadhar Card[Original]", "Driving License[Original]-Mandatory for Bike Rentals"],
+      "Health and Safety": ["Sugar and BP Tablets", "Levipil", "Sasthri Balm", "Dolo 650", "Cofsils"],
+      "Money and Banking": ["Sufficient Cash in Hand", "Cards if you want to Carry"],
+      "Electronics": ["Headphones", "Mobile Charger", "Extra SDHC"],
+      "Personal Care and Hygiene": ["Sun screen", "Toothbrush and toothpaste","Shampoo","Soap or body wash","Comb","Lip Balm","Moisturizer","Feminine hygiene products"],
+      "Clothing and Accessories": ["Swimwear", "Sun Glasses","Cap/Hat","Comfortable walking shoes","Sweaters", "Head bands/Ear Covers"],
+      "Miscellaneous": ["Reusable water bottle", "Snacks Home made"],
+  };
+
+  for (const category in categories) {
+      const fieldset = document.createElement('fieldset');
+      const legend = document.createElement('legend');
+      legend.textContent = category;
+
+      fieldset.appendChild(legend);
+
+      categories[category].forEach(itemText => {
+          const checklistItem = document.createElement('label');
+          const checkbox = document.createElement('input');
+
+          checkbox.type = 'checkbox';
+          checklistItem.textContent = itemText;
+
+          // Update the event listener to strike off when checkbox or text is clicked
+          const toggleStrikeOff = () => {
+              if (checkbox.checked) {
+                  checklistItem.style.textDecoration = 'line-through';
+              } else {
+                  checklistItem.style.textDecoration = 'none';
+              }
+          };
+
+          checkbox.addEventListener('change', toggleStrikeOff());
+          checklistItem.addEventListener('click', () => {
+              checkbox.checked = !checkbox.checked;
+              toggleStrikeOff();
+          });
+
+          fieldset.appendChild(checkbox);
+          fieldset.appendChild(checklistItem);
+          fieldset.appendChild(document.createElement('br'));
+      });
+
+      checklistContainer.appendChild(fieldset);
+  }
+
+  const checklistContent = document.getElementById('checklistContent');
+  checklistContent.appendChild(checklistContainer);
 }
